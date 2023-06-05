@@ -21,13 +21,13 @@
     <header>
 
         <figure>      
-         <img class="img-fluid" src="public/images/frog.png">           
+         <!-- <img class="img-fluid" src="public/images/frog.png">            -->
         </figure>
 
         <nav>
             <ul class = "bg-warning">
-                <li><a class="text-success" href="#">Home</a></li>
-                <li><a href="#">Liste des films</a></li>
+                <li><a href="index.php?action=homePage">Accueil</a></li>
+                <li><a href="index.php?action=listFilms">Liste des films</a></li>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Home</a></li>

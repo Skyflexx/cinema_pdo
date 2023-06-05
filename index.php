@@ -25,8 +25,10 @@
 
         if(isset($_GET['action'])){
             switch($_GET['action']){
-               // case 'listFilms': $filmCtrl->findAllFilms(); break;
+                case 'listFilms': $filmCtrl->findAllFilms(); break;
                 // case 'listActors': $personCtrl->findAllActors(); break;
+                //case 'homePage' : $homeCtrl->homePage(); break;
+                default : $homeCtrl->homePage();
             }
         } else {
             $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage()
