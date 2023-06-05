@@ -26,6 +26,9 @@
     // Version simplifiée pour l'instant : index.php?action=listFilms
 
         if(isset($_GET['action'])){
+
+            $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
             switch($_GET['action']){
                 case 'listFilms': $filmCtrl->findAllFilms(); break;
                 case 'listActors': $personCtrl->findAllActors(); break;
