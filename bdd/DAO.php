@@ -2,6 +2,8 @@
 
 DAO : Data Access Object
 PDO : Classe native PhP
+query() : fct native php
+prepare()
 
 -->
 
