@@ -28,9 +28,38 @@
 
             $detailFilm = $dao->executerRequete($sql);
 
+            $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role
+            FROM personne p
+            INNER JOIN acteur a
+                ON p.id_personne = a.id_personne
+            INNER JOIN casting c
+                ON a.id_acteur = c.id_acteur 
+            INNER JOIN role r
+                ON c.id_role = r.id_role
+            WHERE c.id_film = $id";
+
+            $acteursFilm = $dao->executerRequete($sql2);
+
             require "views/movie/detailFilm.php";
 
         }
+
+        // public function showActors($id){
+
+        //     $dao = new DAO();
+
+        //     $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance 
+        //             FROM personne p
+        //             INNER JOIN acteur a
+        //                 ON p.id_personne = a.id_personne
+        //             INNER JOIN casting c
+        //                 ON a.id_acteur = c.id_acteur 
+        //             WHERE c.id_film = $id";
+
+        //     $acteursFilm = $dao->executerRequete($sql2);
+            
+        //     require "views/movie/detailFilm.php";
+        // }
 
     }
 

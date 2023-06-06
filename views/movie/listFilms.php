@@ -10,7 +10,8 @@
 
 <?php 
 
-echo "<div class='container p-5'><div class ='row'>";
+echo "<div class='container p-5'>
+        <div class ='row'>";
 
 while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de film, cad tant que je peux recuperer un resultat
 
@@ -39,7 +40,8 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
 
 <?php
 }
-echo "</div></div>";
+echo "</div>
+        </div>";
 
 $title = "Liste de nos films";
 $content = ob_get_clean(); // récupère et affiche le fichier puis vide la mémoire tampon
