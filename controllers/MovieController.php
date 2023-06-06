@@ -7,7 +7,7 @@
 
             $dao = new DAO(); // On instancie un DAO. On se connecte à la BDD.
 
-            $sql = "SELECT f.id_film, f.titre_film, f.synopsis FROM film f";
+            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche FROM film f";
 
             $films = $dao->executerRequete($sql);
 

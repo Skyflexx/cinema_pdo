@@ -4,9 +4,18 @@
 
 <h2>Liste des Acteurs</h2>
 
+<?= $actors->rowCount(); ?>
+
 <?php 
 
-$title = "Liste de nos films";
+while ($actor = $actors->fetch()){
+
+    echo $actor["prenom"];
+    echo $actor["nom"];   
+
+}
+
+$title = "Liste de nos acteurs";
 $content = ob_get_clean(); // récupère et affiche le fichier puis vide la mémoire tampon
 require "views/template.php";
 ?>

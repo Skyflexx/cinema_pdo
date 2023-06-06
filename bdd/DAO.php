@@ -14,8 +14,8 @@ class DAO{ // Permettra de construire un objet pour me connecter grace à PDO à
     private $bdd;
 
     public function __construct(){
-        $this->bdd = new PDO('mysql:host=localhost;dbname=cinema;charset=utf8', 'root', '');
-    } // dbname c'est le nom de la BDD. 'root' et " " vide c'est le nom et le password.
+        $this->bdd = new PDO('mysql:host=localhost;dbname=cinema;charset=utf8', 'root', ''); // Localisation de la BDD avec le nom d'utilisateur et le password si il y en a un.
+    } 
 
     function getBDD(){
         return $this->bdd;

@@ -29,7 +29,7 @@
                 <li class="nav-item active"><a class="nav-link active" href="index.php?action=homePage">Accueil</a></li>
                 <li class="nav-item active"><a class="nav-link active" href="index.php?action=listFilms">Films</a></li>
                 <li class="nav-item active"><a class="nav-link active" href="index.php?action=listActors">Acteurs</a></li>
-                <li class="nav-item active"><a class="nav-link active" href="undex.php?action=listGenres">Genres</a></li>
+                <li class="nav-item active"><a class="nav-link active" href="index.php?action=listGenres">Genres</a></li>
                 <li class="nav-item active"><a class="nav-link active" href="#">Home</a></li>
             </ul>
         </nav>
