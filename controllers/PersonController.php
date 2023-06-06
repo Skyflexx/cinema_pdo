@@ -29,7 +29,8 @@
                     ON f.id_realisateur = r.id_realisateur
                     INNER JOIN personne p
                     ON r.id_personne = p.id_personne            
-                    WHERE r.id_realisateur =  $id";
+                    WHERE r.id_realisateur =  $id
+                    ORDER BY annee_sortie ASC";
             
             $filmList = $dao->executerRequete($sql);
 

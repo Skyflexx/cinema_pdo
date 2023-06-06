@@ -8,16 +8,16 @@
 
     while ($detail = $detailFilm->fetch()){
 
-        echo "<div class ='bg-image' style ='background-image : url(".$detail['wallpaper']."); width: 100%; height: 100%; background-repeat: no-repeat;'>
+        echo "<div class ='mx-5 bg-image' style ='background-image : url(".$detail['wallpaper']."); width: auto; height: 100%; background-repeat: no-repeat;'>
                 <div class='container p-5'> <div class ='card'><h2>".$detail['titre_film']."</h2>",             
                     "<div class='card-body'><strong>Résumé du film :</strong> ".$detail['synopsis']."</div>       
                         <div class ='card-body'><strong>Date de sortie :</strong> ".$detail['annee_sortie']."</div>
                         <div class ='card-body'><strong>Realisateur :</strong> ".$detail['prenom']." ".$detail['nom']." 
-                    <a class='btn btn-primary' href='index.php?action=filmographie&id=".$detail['id_realisateur']."'>Voir la filmographie</a></div>                          
+                    <a class='btn btn-outline-info btn-sm' href='index.php?action=filmographie&id=".$detail['id_realisateur']."'>Voir la filmographie</a></div>                          
                 </div>";    
     }
 
-echo "<div class ='row'>";
+echo "<div class ='mx-5 row'>";
 
     while ($acteur = $acteursFilm->fetch()){
         echo "<div class ='col-sm-3'>

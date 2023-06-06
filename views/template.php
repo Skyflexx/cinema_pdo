@@ -17,23 +17,23 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title><?= $title ?></title>
 </head>
-<body>
+<body class='border border-dark mx-5'>
 
-    <header>        
+    <header class ='bg-dark text-warning'>        
 
         <h1>SkyCine</h1>        
 
     </header>
 
-    <nav class="navbar navbar-expand bg-light d-flex justify-content-center">
+    <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center">
         <figure>      
          <img id = "frog" class="img-responsive" src="public/images/frog.png" >           
         </figure>
-            <ul class = "bg-warning navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link active" href="index.php?action=homePage">Accueil</a></li>
-                <li class="nav-item active"><a class="nav-link active" href="index.php?action=listFilms">Films</a></li>
-                <li class="nav-item active"><a class="nav-link active" href="index.php?action=listActors">Acteurs</a></li>
-                <li class="nav-item active"><a class="nav-link active" href="index.php?action=listGenres">Genres</a></li>
+            <ul class = "navbar-nav mr-auto">
+                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=homePage">Accueil</a></li>
+                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listFilms">Films</a></li>
+                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listActors">Acteurs</a></li>
+                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listGenres">Genres</a></li>
                 <!-- <li class="nav-item active"><a class="nav-link active" href="#">Home</a></li> -->
             </ul>
         </nav>
@@ -43,9 +43,9 @@
         <!-- La balise ci dessus avec le =, c'est pour faire un echo de façon raccourcie -->
     </main>
 
-    <footer>
+    <footer class ='bg-dark text-info border border-info text-center'>
 
-        <span>Ceci est un footer</span>
+        <span>2023 Sky Production</span>
 
     </footer>
 
