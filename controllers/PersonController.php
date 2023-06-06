@@ -16,11 +16,26 @@
                     
             $actors = $dao->executerRequete($sql);
 
-
-
             require "views/actor/listActors.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
         }
 
+        public function showFilmography($id){
+
+            $dao = new DAO();
+
+            $sql = "SELECT p.prenom, p.nom, p.image, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie            
+                    FROM film f
+                    INNER JOIN realisateur r
+                    ON f.id_realisateur = r.id_realisateur
+                    INNER JOIN personne p
+                    ON r.id_personne = p.id_personne            
+                    WHERE r.id_realisateur =  $id";
+            
+            $filmList = $dao->executerRequete($sql);
+
+            require "views/actor/filmography.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
+
+        }
         
     }
 

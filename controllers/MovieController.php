@@ -18,7 +18,7 @@
 
             $dao = new DAO(); // connexion bdd
 
-            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom
+            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur
                     FROM film f  
                     INNER JOIN realisateur r
                         ON f.id_realisateur = r.id_realisateur

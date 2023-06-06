@@ -40,6 +40,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
                 case 'listActors': $personCtrl->findAllActors(); break;
                 case 'listGenres': $genreCtrl->findAllGenres(); break;
                 case 'detailFilm' : $filmCtrl->showFilmDetails($_GET['id']); break;
+                case 'filmographie' : $personCtrl->showFilmography($_GET['id']); break;
 
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
