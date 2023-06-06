@@ -10,7 +10,7 @@
 
 <?php 
 
-echo "<div class='container-fluid'>";
+echo "<div class='container-fluid'><div class ='row'>";
 
 while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de film, cad tant que je peux recuperer un resultat
 
@@ -20,18 +20,17 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
     // echo $film["titre_film"]; // si undefined array key, ça veut dire qu'on lui demande une info dont la requête SQL est fausse. sachant que le select * ne doit pas être utilisé.
 
 
-    echo "<div class='card' style='width: 18rem;'>
-        <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>
-        <div class='card-body'>
-        <h5 class='card-title'>".$film['titre_film']."</h5>
-
-        <a class='btn btn-primary' href='index.php?action=detailFilm&id=".$film['id_film']."'>Detail film </a>
-
+    echo "<div class ='col'>
+        <div class='card' style='width: 15rem;'>
+            <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>
+                <div class='card-body'>
+                    <h6 class='card-title'>".$film['titre_film']."</h5>
+                    <a class='btn btn-primary' href='index.php?action=detailFilm&id=".$film['id_film']."'>Detail film </a>
+                </div>
+            </div>
+        </div>";
         
-       
-        </div>
-        
-        "
+     
 
 ?>
 
@@ -39,7 +38,7 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
 
 <?php
 }
-echo "</div>";
+echo "</div></div>";
 
 $title = "Liste de nos films";
 $content = ob_get_clean(); // récupère et affiche le fichier puis vide la mémoire tampon

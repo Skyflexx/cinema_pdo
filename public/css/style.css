@@ -1,0 +1,21 @@
+header{
+    display : flex;
+    justify-content: center;
+}
+
+#frog{
+
+ width : 100px;
+ height : auto;
+
+}
+
+main {    
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    margin : auto;
+}
