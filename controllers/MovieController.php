@@ -7,7 +7,7 @@
 
             $dao = new DAO(); // On instancie un DAO. On se connecte à la BDD.
 
-            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche FROM film f";
+            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.note FROM film f";
 
             $films = $dao->executerRequete($sql);
 
@@ -18,7 +18,13 @@
 
             $dao = new DAO(); // connexion bdd
 
-            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper FROM film f WHERE f.id_film = $id ";
+            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom
+                    FROM film f  
+                    INNER JOIN realisateur r
+                        ON f.id_realisateur = r.id_realisateur
+                    INNER JOIN personne p
+                        ON r.id_personne = p.id_personne
+                    WHERE f.id_film = $id ";
 
             $detailFilm = $dao->executerRequete($sql);
 

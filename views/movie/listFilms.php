@@ -10,7 +10,7 @@
 
 <?php 
 
-echo "<div class='container-fluid'><div class ='row'>";
+echo "<div class='container p-5'><div class ='row'>";
 
 while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de film, cad tant que je peux recuperer un resultat
 
@@ -21,11 +21,12 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
 
 
     echo "<div class ='col'>
-        <div class='card' style='width: 15rem;'>
+        <div class='card my-1' style='width: 15rem;'>
             <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>
                 <div class='card-body'>
                     <h6 class='card-title'>".$film['titre_film']."</h5>
-                    <a class='btn btn-primary' href='index.php?action=detailFilm&id=".$film['id_film']."'>Detail film </a>
+                    <p>".$film['note']." <img src='public//images/etoile.png'></p>                    
+                    <a class='btn btn-primary' href='index.php?action=detailFilm&id=".$film['id_film']."'>En savoir plus</a>
                 </div>
             </div>
         </div>";
