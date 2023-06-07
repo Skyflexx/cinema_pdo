@@ -43,6 +43,37 @@
         <!-- La balise ci dessus avec le =, c'est pour faire un echo de façon raccourcie -->
     </main>
 
+    <!-- <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Titre</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Titre">
+            
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Résumé</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="résumé">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Date de sortie</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="date">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Note</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="note">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">durée</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="en minutes">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Réalisateur</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="réalisateur">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Valider</button>
+
+    </form> -->
+
     <footer class ='bg-dark text-warning text-center'>
 
         <span>2023 Sky Production</span>

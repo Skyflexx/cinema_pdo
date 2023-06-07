@@ -26,3 +26,8 @@ h2 {
     flex-direction: column;
     align-items: center;
 }
+
+input{
+
+    line-break: loose;
+}

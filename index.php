@@ -45,6 +45,8 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
                 case 'filmographie' : $personCtrl->showRealFilmography($id); break;
                 case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
                 case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
+                case 'editFilm' : $filmCtrl->editMovie($id); break;
+               
 
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
