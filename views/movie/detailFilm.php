@@ -20,7 +20,9 @@
 echo "<div class ='mx-5 row'>";
 
     while ($acteur = $acteursFilm->fetch()){
-        echo "<div class ='col-sm-3'>
+
+      
+        echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>
         <div class='card my-3' style='width: 10rem;'>
             <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
                 <div class='card-body'>
@@ -29,7 +31,7 @@ echo "<div class ='mx-5 row'>";
                     <p>Rôle : ".$acteur['nom_role']." </p>       
                 </div>
             </div>
-        </div>";
+            </a></div>  ";
     }
 
 echo "</div>";

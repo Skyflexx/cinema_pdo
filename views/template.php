@@ -20,14 +20,14 @@
 <body class='border border-dark mx-5'>
 
     <header class ='bg-dark text-warning'>        
-
+    <img id = "frog" src="public/images/frog.png" > 
         <h1>SkyCine</h1>        
 
     </header>
 
     <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center">
         <figure>      
-         <img id = "frog" class="img-responsive" src="public/images/frog.png" >           
+                   
         </figure>
             <ul class = "navbar-nav mr-auto">
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=homePage">Accueil</a></li>

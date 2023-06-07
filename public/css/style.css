@@ -5,8 +5,9 @@ header{
 
 #frog{
 
- width : 100px;
- height : auto;
+ width : 50px;
+ height : 50px;
+
 
 }
 
@@ -18,4 +19,10 @@ main {
 
 h2 {
     margin : auto;
+}
+
+.col {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

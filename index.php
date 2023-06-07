@@ -33,14 +33,17 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
 
         if(isset($_GET['action'])){
 
-            $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
+            // $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
+            $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
+            // Récupère le contenu dans le GET, dont le nom est 'id', le filtre puis le CAST en INT avec notre filtre number int.
 
             switch($_GET['action']){ // Dans le $_GET si le contenu de l'action est listFilms, listActors ou listGenres, alors on fait appel aux méthodes des objets suivants.
                 case 'listFilms': $filmCtrl->findAllFilms(); break;
                 case 'listActors': $personCtrl->findAllActors(); break;
                 case 'listGenres': $genreCtrl->findAllGenres(); break;
-                case 'detailFilm' : $filmCtrl->showFilmDetails($_GET['id']); break;
-                case 'filmographie' : $personCtrl->showFilmography($_GET['id']); break;
+                case 'detailFilm' : $filmCtrl->showFilmDetails($id); break; // $id en paramètre qu'on a filtré au dessus. 
+                case 'filmographie' : $personCtrl->showRealFilmography($id); break;
+                case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
 
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.

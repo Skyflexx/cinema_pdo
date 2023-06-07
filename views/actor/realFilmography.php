@@ -2,8 +2,7 @@
     ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.
 ?>
 
-<h2 class='my-4'>Liste des Films de ce réalisateur</h2>
-
+<h2 class='my-4'>Filmographie</h2>
 
 <?php 
 
@@ -12,12 +11,10 @@
     echo "<ul class='list-group mx-5 my-3'>";
 
     while ($film = $filmList->fetch()){
-
         
         $nomReal = $film['prenom']." ".$film['nom']; 
         $imgReal = $film['image'];
-
-    echo "<li class ='list-group-item'>".$film['titre_film']." sorti en  ".$film['annee_sortie']."</li>";
+        echo "<li class ='list-group-item'>".$film['titre_film']." sorti en  ".$film['annee_sortie']."</li>";
         
     }
 
@@ -30,9 +27,7 @@
                 <h6 class='card-title'>".$nomReal."</h5>                
             </div>
         </div>
-    </div>";
-
-    
+    </div>";    
 
     $title = "Filmographie";
     $content = ob_get_clean(); // récupère et affiche le fichier puis vide la mémoire tampon
