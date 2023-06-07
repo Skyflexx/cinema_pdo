@@ -14,7 +14,7 @@
         
         $nomActor = $film['prenom']." ".$film['nom']; 
         $imgActor = $film['image'];
-        echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=detailFilm&id=".$film['id_film']."'>  ".$film['titre_film']." sorti en  ".$film['annee_sortie']."</a></li>";
+        echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=detailFilm&id=".$film['id_film']."'>".$film['titre_film']." sorti en  ".$film['annee_sortie']." - (".$film['nom_role'].")</a></li>";
         
     }
 

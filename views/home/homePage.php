@@ -1,8 +1,20 @@
 <?php 
     ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.
+
+    
+                                     
+                 
 ?>
 
-<h2>Ceci est une page d'accueil</h2>
+
+
+
+<img src="public/images/cinema.jpg">
+
+
+
+
+    
 
 <?php 
 

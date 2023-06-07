@@ -4,16 +4,19 @@
 
 <h2>Liste des Acteurs</h2>
 
-<?= $actors->rowCount(); ?>
+
 
 <?php 
 
-while ($actor = $actors->fetch()){
+echo "<ul class='list-group mx-5 my-3'>";
 
-    echo $actor["prenom"];
-    echo $actor["nom"];   
+while ($actor = $actors->fetch()){    
+
+    echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$actor['id_personne']."'>".$actor['prenom']." ".$actor['nom']."</a></li>";
 
 }
+
+echo "</ul>";  
 
 $title = "Liste de nos acteurs";
 $content = ob_get_clean(); // récupère et affiche le fichier puis vide la mémoire tampon

@@ -8,7 +8,7 @@
 
             $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
 
-            $sql = "SELECT p.prenom, p.nom, DATE_FORMAT(p.date_naissance, '%Y') AS age 
+            $sql = "SELECT p.prenom, p.nom, DATE_FORMAT(p.date_naissance, '%Y') AS age, p.id_personne
                     FROM personne p
                     INNER JOIN acteur a
                     ON p.id_personne = a.id_personne
@@ -23,7 +23,7 @@
 
             $dao = new DAO();
 
-            $sql = "SELECT p.prenom, p.nom, p.image, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie            
+            $sql = "SELECT p.prenom, p.nom, p.image,f.id_film, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie            
                     FROM film f
                     INNER JOIN realisateur r
                     ON f.id_realisateur = r.id_realisateur
@@ -42,7 +42,7 @@
 
             $dao = new DAO();
 
-            $sql = "SELECT f.id_film, f.titre_film, f.annee_sortie, p.nom, p.prenom, p.image
+            $sql = "SELECT f.id_film, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie, p.nom, p.prenom, p.image, r.nom_role
                     FROM film f
                     INNER JOIN casting c
                     ON f.id_film = c.id_film
@@ -50,6 +50,8 @@
                     ON c.id_acteur = a.id_acteur
                     INNER JOIN personne p
                     ON a.id_personne = p.id_personne
+                    INNER JOIN role r
+                    ON c.id_role = r.id_role
                     WHERE p.id_personne = $id
                     ORDER BY annee_sortie ASC";
             

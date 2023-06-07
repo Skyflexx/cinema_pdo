@@ -43,7 +43,7 @@
         <!-- La balise ci dessus avec le =, c'est pour faire un echo de façon raccourcie -->
     </main>
 
-    <footer class ='bg-dark text-info border border-info text-center'>
+    <footer class ='bg-dark text-warning text-center'>
 
         <span>2023 Sky Production</span>
 
