@@ -2,13 +2,11 @@
     ob_start();
 ?>
 
-
-
 <?php
 
     while ($detail = $detailFilm->fetch()){
 
-        echo "<div class ='bg-image' style ='background-image : url(".$detail['wallpaper']."); width: auto; height: 100%; background-repeat: no-repeat; background-position: center;'>
+        echo "<div class ='bg-image' style ='background-image : url(".$detail['wallpaper']."); width: auto; height: 100%; background-repeat: no-repeat; background-attachment: local;'>
                 <div class='container p-5'> <div class ='card'><h2>".$detail['titre_film']."</h2>",             
                     "<div class='card-body'><strong>Résumé du film :</strong> ".$detail['synopsis']."</div>       
                         <div class ='card-body'><strong>Date de sortie :</strong> ".$detail['annee_sortie']."</div>

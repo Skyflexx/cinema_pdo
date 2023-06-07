@@ -34,7 +34,7 @@
             
             $filmList = $dao->executerRequete($sql);
 
-            require "views/actor/realFilmography.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
+            require "views/realisator/realFilmography.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
 
         }
 

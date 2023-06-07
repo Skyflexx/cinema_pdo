@@ -3,6 +3,22 @@
 
     class MovieController {
 
+        // public function editMovie($id){
+
+        //     $dao = new DAO();
+
+        //     $sqlActual = "";
+
+        //     $sqlModif = "";
+
+
+        // }
+
+        // public function deleteMovie(){
+
+
+        // }
+
         public function findAllFilms(){
 
             $dao = new DAO(); // On instancie un DAO. On se connecte à la BDD.
