@@ -4,13 +4,16 @@
 
 <h2>Les genres de films</h2>
 
-<?= $genres->rowCount(); ?>
+
 
 <?php 
 
-while ($genre = $genres->fetch()){
-    echo $genre["id_genre"];
-    echo $genre ["nom_genre"];
+
+
+while ($genre = $genres->fetch()){    
+
+    echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=filmsPerGenre&id=".$genre['id_genre']."'>".$genre['nom_genre']."</a></li>";
+
 }
 
 $title = "Nos genres de films";
