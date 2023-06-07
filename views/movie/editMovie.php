@@ -17,6 +17,8 @@
 
 ?>
 
+<h2 class="text-center text-primary"><?= $title?></h2>
+
 <form>
 
 
