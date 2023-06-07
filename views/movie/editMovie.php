@@ -20,22 +20,20 @@
 <h2 class="text-center text-primary"><?= $title?></h2>
 
 <form>
-
-
         <div class="form-group my-1">
             <label for="title">Titre</label>
-            <textarea class="form-control" aria-label="With textarea"><?= $title ?></textarea>
+            <textarea class="form-control" aria-label="With textarea" name="title"><?= $title ?></textarea>
                     
         </div>
 
         <div class="form-group my-2">
             <label for="synopsis">Résumé</label>        
-            <textarea class="form-control" aria-label="With textarea"><?= $synopsis ?></textarea>
+            <textarea class="form-control" aria-label="With textarea" name="synopsis"><?= $synopsis ?></textarea> 
         </div>
 
         <div class="form-group my-2">
             <label for="releaseDate">Date de sortie (actuelle : <?= $releaseDate ?>)</label>
-            <input type="date" class="form-control" id="releaseDate" placeholder="<?= $releaseDate ?>">
+            <input type="date" class="form-control" id="releaseDate" placeholder=<?= $releaseDate ?>>
         </div>
 
         <!-- RATING -->
@@ -43,28 +41,28 @@
         <p>Modifier la note : </p>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="option1">
             <label class="form-check-label" for="inlineRadio1">1</label>
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="option2">
             <label class="form-check-label" for="inlineRadio2">2</label>
             
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="option3">
             <label class="form-check-label" for="inlineRadio3">3</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+            <input class="form-check-input" type="radio" name="rating" id="inlineRadio4" value="option4">
             <label class="form-check-label" for="inlineRadio3">4</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+            <input class="form-check-input" type="radio" name="rating" id="inlineRadio5" value="option5">
             <label class="form-check-label" for="inlineRadio3">5</label>
         </div>
 
@@ -72,10 +70,10 @@
 
         <div class="form-group my-2">
             <label for="duration">Durée en minutes</label>
-            <input type="text" class="form-control" id="duration" placeholder="<?= $duration ?>">
+            <input type="text" class="form-control" id="duration" name="duration" placeholder="<?= $duration ?>">
         </div>        
         
-        <button type="submit" class="btn btn-primary my-3">Valider</button>
+        <button type="submit" class="btn btn-primary my-3" name="submit" >Valider</button>
         
     </form>
 

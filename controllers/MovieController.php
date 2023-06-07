@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "bdd/DAO.php";
 
     class MovieController {
@@ -30,6 +31,25 @@
                     WHERE c.id_film = $id";
 
             $acteursFilm = $dao->executerRequete($sql2);
+
+
+            if(isset($_POST['submit'])){
+
+                $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);  
+                $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_STRING);   
+                $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_STRING);                
+                $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
+                $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);  
+
+            }
+
+
+
+
+
+
+
+
 
             require "views/movie/editMovie.php";
 
