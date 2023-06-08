@@ -4,7 +4,7 @@
 
     class MovieController {
 
-        public function editMovie($id){
+        public function currMovieEditing($id){
 
             $dao = new DAO();
 
@@ -14,9 +14,7 @@
                         ON f.id_realisateur = r.id_realisateur
                     INNER JOIN personne p
                         ON r.id_personne = p.id_personne
-                    WHERE f.id_film = $id";
-
-            $sqlModif = "";
+                    WHERE f.id_film = $id";           
 
             $detailFilm = $dao->executerRequete($sqlActual);
 
@@ -33,34 +31,16 @@
             $acteursFilm = $dao->executerRequete($sql2);
 
 
-            if(isset($_POST['submit'])){
-
-                $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);  
-                $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_STRING);   
-                $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_STRING);                
-                $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
-                $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);  
-
-            }
-
-
-
-
-
-
-
-
-
-            require "views/movie/editMovie.php";
-
-
+             require "views/movie/currMovieEditing.php";
 
         }
 
-        // public function deleteMovie(){
+        public function editMovie($id){
+
+            // récupération des infos de $post puis injection SQL.
 
 
-        // }
+        }
 
         public function findAllFilms(){
 
