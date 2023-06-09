@@ -2,11 +2,9 @@
     ob_start();
 ?>
 
-
-
 <?php
 
-    while ($detail = $detailFilm->fetch()){
+    while ($detail = $detailFilm->fetch()){ // Affichera tous les détails d'un film
 
         $idFilm = $detail['id_film'];
 
@@ -25,31 +23,27 @@
                 </div>";    
     }
 
-echo "<div class ='mx-5 row'>";
+    echo "<div class ='mx-5 row'>";
 
-    while ($acteur = $acteursFilm->fetch()){
-
+    while ($acteur = $acteursFilm->fetch()){ // Affichera la liste des acteurs pour ce film
       
         echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>
-        <div class='card my-3' style='width: 10rem;'> <a href='index.php?action=currPersonEditing&id=".$acteur['id_personne']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
-            <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
-                <div class='card-body'>
-                    <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
-                    <p>Né(e) le : ".$acteur['date_naissance']."</p>  
-                    <p>Rôle : ".$acteur['nom_role']." </p>       
-                </div>
-            </div>
-            </a></div>  ";
+                <div class='card my-3' style='width: 10rem;'> <a href='index.php?action=currPersonEditing&id=".$acteur['id_personne']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
+                    <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
+                        <div class='card-body'>
+                            <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
+                            <p>Né(e) le : ".$acteur['date_naissance']."</p>  
+                            <p>Rôle : ".$acteur['nom_role']." </p>       
+                        </div>
+                    </div>
+                </a>
+            </div>  ";
     }
 
-echo "</div> ";
+    echo "</div> ";
 
-
-
-
-
-$title = "Détail du film";
-$content = ob_get_clean();
-require "views/template.php";
+    $title = "Détail du film";
+    $content = ob_get_clean();
+    require "views/template.php";
 ?>
 

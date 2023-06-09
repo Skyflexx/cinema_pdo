@@ -52,7 +52,6 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
         $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT); 
 
         $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);  // Si un submit au nom de editPerson on lance la fct editer après vérification.
-
     }
 
         if(isset($_GET['action'])){

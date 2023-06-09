@@ -1,10 +1,9 @@
 <?php
-    session_start();
     require_once "bdd/DAO.php";
 
     class MovieController {
 
-        public function currMovieEditing($id){
+        public function currMovieEditing($id){ // fonction "Film en cours d'édition". qui sortira tous les éléments nécessaires à la modification d'un film.
 
             $dao = new DAO();
 
@@ -30,12 +29,11 @@
 
             $acteursFilm = $dao->executerRequete($sql2);
 
-
-             require "views/movie/currMovieEditing.php";
+            require "views/movie/currMovieEditing.php"; // on appelle currMovieEditing.php qui affiche tous les formulaires nécessaires à la modif d'un film.
 
         }
 
-        public function editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating){
+        public function editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating){ // Fonction qui est appelée en appuyant sur "ok" depuis la fonction currMovieEditing. Elle permettra la maj SQL.
 
             // récupération des infos de $post puis injection SQL            
 
@@ -55,7 +53,7 @@
 
         }
 
-        public function findAllFilms(){
+        public function findAllFilms(){ // Permet de sortir tous les films.
 
             $dao = new DAO(); // On instancie un DAO. On se connecte à la BDD.
 
@@ -66,7 +64,7 @@
             require "views/movie/listFilms.php";
         }
 
-        public function showFilmDetails($id){
+        public function showFilmDetails($id){ // Permet d'afficher tous les détails d'un film, dont la liste des acteurs.
 
             $dao = new DAO(); // connexion bdd
 
@@ -95,24 +93,7 @@
             require "views/movie/detailFilm.php";
 
         }
-
-        // public function showActors($id){
-
-        //     $dao = new DAO();
-
-        //     $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance 
-        //             FROM personne p
-        //             INNER JOIN acteur a
-        //                 ON p.id_personne = a.id_personne
-        //             INNER JOIN casting c
-        //                 ON a.id_acteur = c.id_acteur 
-        //             WHERE c.id_film = $id";
-
-        //     $acteursFilm = $dao->executerRequete($sql2);
-            
-        //     require "views/movie/detailFilm.php";
-        // }
-
+        
     }
 
 ?>

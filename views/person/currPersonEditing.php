@@ -1,5 +1,3 @@
-
-
 <?php 
     ob_start();
 ?>
@@ -23,8 +21,6 @@
         case 'M' : $isCheckM = "checked"; break;
     }
        // Ce petit bout de code permet de rajouter le mot "checked" à la balise de la radio pour cocher le sexe déjà présent dans la BDD.
-     
-
 ?>
 
 <h2 class="text-center text-primary"><?=$prenom." ".$nom?></h2>
@@ -59,13 +55,10 @@
         </div>
         
         <input type="hidden" name="id" value="<?= $id_person ?>"> <!-- stockage dans $post de l'id de la personne par le biais d'un input hidden -->      
-        
-        
-        
+                
         <button type="submit" class="btn btn-primary my-3" name="editPerson">Valider</button>
 
     </form>
-
 <?php
 
    
@@ -90,10 +83,8 @@
 
 // echo "</div>";
 
-
-
-$title = "Détail du film";
-$content = ob_get_clean();
-require "views/template.php";
+    $title = "Détail du film";
+    $content = ob_get_clean();
+    require "views/template.php";
 ?>
 
