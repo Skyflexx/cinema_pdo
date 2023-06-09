@@ -60,6 +60,40 @@
             require "views/actor/actorFilmography.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
 
         }
+
+        public function currPersonEditing($id){ // Personne en cours d'édition. Afficheant les détails actuels.
+
+            $dao = new DAO();
+
+            $sql = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, p.id_personne
+                    FROM personne p
+                    
+                    WHERE p.id_personne = $id";
+
+            $detailsPerson = $dao->executerRequete($sql);
+
+             require "views/person/currPersonEditing.php";
+
+        }
+
+        public function editPerson($id, $nom, $prenom, $birthDate, $gender){
+
+            // récupération des infos de $post puis injection SQL            
+
+            $dao = new DAO();
+
+            $sql="UPDATE personne p
+                    SET p.nom = '$nom',
+                        p.prenom = '$prenom',
+                        p.date_naissance = '$birthDate',
+                        p.sexe = '$gender'
+                    WHERE p.id_personne = '$id';";                      
+                
+            $editPerson = $dao->executerRequete($sql);
+
+            $this->showActorFilmography($id); // Permet de repasser au détail de la personne en question ce qui fait une maj instantannée.
+
+        }
         
     }
 

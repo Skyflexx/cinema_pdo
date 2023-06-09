@@ -51,7 +51,7 @@
                 
             $editFilm = $dao->executerRequete($sql);
 
-            $this->showFilmDetails($id);
+            $this->showFilmDetails($id); // Permet de repasser au détail du film en question ce qui fait une maj instantannée.
 
         }
 

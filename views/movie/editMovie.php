@@ -2,8 +2,6 @@
     ob_start();
 ?>
 
-
-
 <?php
 
     while ($detail = $detailFilm->fetch()){

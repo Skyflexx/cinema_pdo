@@ -30,7 +30,7 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
                     <h6 class='card-title'>".$film['titre_film']."</h5>
                     <p>".$film['note']." <img src='public//images/etoile.png'></p>                    
                     <a class='btn btn-outline-info btn-sm' href='index.php?action=detailFilm&id=".$film['id_film']."'>En savoir plus</a>
-                    <a href='index.php?action=currMovieEditing&id=".$film['id_film']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>                    
+                    <a href='index.php?action=currMovieEditing&id=".$film['id_film']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>                   
                 </div>
             </div>
         </div>";  
