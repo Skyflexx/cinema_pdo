@@ -27,9 +27,9 @@
 
     while ($acteur = $acteursFilm->fetch()){ // Affichera la liste des acteurs pour ce film
       
-        echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>
+        echo "<div class ='col-sm-3'>
                 <div class='card my-3' style='width: 10rem;'> <a href='index.php?action=currPersonEditing&id=".$acteur['id_personne']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
-                    <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
+                <a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'> <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
                         <div class='card-body'>
                             <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
                             <p>Né(e) le : ".$acteur['date_naissance']."</p>  

@@ -22,7 +22,7 @@
         <h1 class='my-auto mx-3'>SKY CINE</h1>   
     </header>
 
-    <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center mb-3"> <!--mb pour margin bottom -->        
+    <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center">      
             <ul class = "navbar-nav mr-auto">
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=homePage">Accueil</a></li>
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listFilms">Films</a></li>

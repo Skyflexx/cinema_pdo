@@ -2,7 +2,7 @@
     ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.
 ?>
 
-<h2>Liste des films</h2>
+<h2 class='mt-3'>Liste des films</h2>
 
 <!-- <?= $films->rowCount()?> par une fonction native de php on peut compter le nombre de lignes -->
 
@@ -16,10 +16,8 @@
         // echo $film["titre_film"]; // si undefined array key, ça veut dire qu'on lui demande une info dont la requête SQL est fausse. sachant que le select * ne doit pas être utilisé.
 
         echo "<div class ='col'>
-            <div class='card my-1' style='width: 15rem;'>
-        
-                <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>
-                
+            <div class='card my-1' style='width: 15rem;'>        
+                <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>                
                     <div class='card-body'>
                         <h6 class='card-title'>".$film['titre_film']."</h5>
                         <p>".$film['note']." <img src='public//images/etoile.png'></p>                    
