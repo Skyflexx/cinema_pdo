@@ -31,3 +31,13 @@ input{
 
     line-break: loose;
 }
+
+#edit-btn{
+     
+    position: absolute;
+    top: 8px;
+    right: 16px;
+   color : rgb(41, 122, 245);
+   font-size: 30px;
+      
+}

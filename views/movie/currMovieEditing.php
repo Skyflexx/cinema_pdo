@@ -4,7 +4,7 @@
 
 <?php 
 
- while ($detail = $detailFilm->fetch()){
+ while ($detail = $detailFilm->fetch()){ // récupération de toutes les données du film pour l'afficher.
    
 
     $title = $detail['titre_film'];
@@ -12,6 +12,7 @@
     $synopsis = $detail['synopsis'];
     $rating = $detail['note'];
     $duration = $detail['duree_film'];
+    $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.
     
 }
 
@@ -32,8 +33,8 @@
         </div>
 
         <div class="form-group my-2">
-            <label for="releaseDate">Date de sortie (actuelle : <?= $releaseDate ?>)</label>
-            <input type="date" class="form-control" id="releaseDate" placeholder=<?= $releaseDate ?>>
+            <label for="releaseDate">Date de sortie</label>
+            <input type="date" class="form-control" name="releaseDate" value=<?= $releaseDate ?>>
         </div>
 
         <!-- RATING -->
@@ -41,28 +42,27 @@
         <p>Modifier la note : </p>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="option1">
+            <input class="form-check-input" type="radio" name="rating" value="1">
             <label class="form-check-label" for="inlineRadio1">1</label>
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="option2">
-            <label class="form-check-label" for="inlineRadio2">2</label>
-            
+            <input class="form-check-input" type="radio" name="rating" value="2">
+            <label class="form-check-label" for="inlineRadio2">2</label>            
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="option3">
+            <input class="form-check-input" type="radio" name="rating" value="3">
             <label class="form-check-label" for="inlineRadio3">3</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" id="inlineRadio4" value="option4">
+            <input class="form-check-input" type="radio" name="rating" value="4">
             <label class="form-check-label" for="inlineRadio3">4</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" id="inlineRadio5" value="option5">
+            <input class="form-check-input" type="radio" name="rating" value="5">
             <label class="form-check-label" for="inlineRadio3">5</label>
         </div>
 
@@ -70,11 +70,13 @@
 
         <div class="form-group my-2">
             <label for="duration">Durée en minutes</label>
-            <input type="text" class="form-control" id="duration" name="duration" placeholder="<?= $duration ?>">
-        </div>        
+            <input type="text" class="form-control" id="duration" name="duration" value="<?= $duration ?>">
+        </div>   
         
-        <button type="submit" class="btn btn-primary my-3" name="editfilm" >Valider</button>
+        <input type="hidden" name="id" value="<?= $id ?>"> <!-- stockage dans $post de l'id du film par le biais d'un input hidden -->        
         
+        <button type="submit" class="btn btn-primary my-3" name="editMovie" >Valider</button>
+
     </form>
 
 <?php
@@ -82,7 +84,7 @@
    
 echo "<div class ='mx-5 row'>";
 
-    while ($acteur = $acteursFilm->fetch()){
+    while ($acteur = $acteursFilm->fetch()){ // Affichage de tous les acteurs pour pouvoir les delete ou les modif par la suite/
 
       
         echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>
@@ -94,7 +96,7 @@ echo "<div class ='mx-5 row'>";
                     <p>Rôle : ".$acteur['nom_role']." </p>       
                 </div>
             </div>
-            </a></div>  ";
+            </a></div>";
     }
 
 echo "</div>";

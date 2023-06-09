@@ -23,11 +23,14 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
 
     echo "<div class ='col'>
         <div class='card my-1' style='width: 15rem;'>
+       
             <img class='card-img-top' src='".$film['affiche']."' alt='Card image cap'>
+            
                 <div class='card-body'>
                     <h6 class='card-title'>".$film['titre_film']."</h5>
                     <p>".$film['note']." <img src='public//images/etoile.png'></p>                    
                     <a class='btn btn-outline-info btn-sm' href='index.php?action=detailFilm&id=".$film['id_film']."'>En savoir plus</a>
+                    <div id='edit-btn'><i class='bi bi-pencil-square'></i></div>
                 </div>
             </div>
         </div>";

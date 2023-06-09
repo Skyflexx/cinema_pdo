@@ -35,10 +35,23 @@
 
         }
 
-        public function editMovie($id){
+        public function editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating){
 
-            // récupération des infos de $post puis injection SQL.
+            // récupération des infos de $post puis injection SQL            
 
+            $dao = new DAO();
+
+            $sql="UPDATE film f
+                    SET f.titre_film = '$title',
+                        f.annee_sortie = '$releaseDate',
+                        f.duree_film = '$duration',
+                        f.synopsis = '$synopsis',
+                        f.note = '$rating'
+                    WHERE f.id_film = '$id';";   
+                
+            $editFilm = $dao->executerRequete($sql);
+
+            $this->showFilmDetails($id);
 
         }
 
@@ -57,7 +70,7 @@
 
             $dao = new DAO(); // connexion bdd
 
-            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur
+            $sql = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, date_format(f.annee_sortie,'%d-%m-%Y') AS annee_sortie, f.note, f.duree_film, p.nom, p.prenom, f.id_realisateur
                     FROM film f  
                     INNER JOIN realisateur r
                         ON f.id_realisateur = r.id_realisateur
