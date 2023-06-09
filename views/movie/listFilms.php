@@ -16,7 +16,7 @@ echo "<div class='container p-5'>
 while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de film, cad tant que je peux recuperer un resultat
 
    
-    // echo $film["id_film"];
+    
 
     // echo $film["titre_film"]; // si undefined array key, ça veut dire qu'on lui demande une info dont la requête SQL est fausse. sachant que le select * ne doit pas être utilisé.
 
@@ -30,13 +30,10 @@ while ($film = $films->fetch()){ // Tant que je peux Fetch dans mon tableau de f
                     <h6 class='card-title'>".$film['titre_film']."</h5>
                     <p>".$film['note']." <img src='public//images/etoile.png'></p>                    
                     <a class='btn btn-outline-info btn-sm' href='index.php?action=detailFilm&id=".$film['id_film']."'>En savoir plus</a>
-                    <div id='edit-btn'><i class='bi bi-pencil-square'></i></div>
+                    <a href='index.php?action=currMovieEditing&id=".$film['id_film']."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>                    
                 </div>
             </div>
-        </div>";
-        
-     
-
+        </div>";  
 ?>
 
 <!-- <a href="index.php?action=detailFilm&id=<?$film?>['id_film']">Detail film </a> -->
