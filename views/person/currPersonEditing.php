@@ -18,11 +18,12 @@
         $id_person = $person['id_personne'];      
     }
 
-    if ($gender == 'F'){    // Ce petit bout de code permet de rajouter le mot "checked" à la balise de la radio pour cocher le sexe déjà présent dans la BDD.
-        $isCheckF = "checked";
-    } else{
-        $isCheckM = "checked";
+    switch($gender){
+        case 'F' : $isCheckF = "checked"; break;
+        case 'M' : $isCheckM = "checked"; break;
     }
+       // Ce petit bout de code permet de rajouter le mot "checked" à la balise de la radio pour cocher le sexe déjà présent dans la BDD.
+     
 
 ?>
 
