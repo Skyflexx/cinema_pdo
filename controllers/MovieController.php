@@ -80,7 +80,7 @@
 
             $detailFilm = $dao->executerRequete($sql);
 
-            $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role, p.id_personne
+            $sql2 = "SELECT p.prenom, p.nom, p.sexe, date_format(p.date_naissance,'%d-%m-%Y') AS date_naissance, p.image, r.nom_role, p.id_personne
                     FROM personne p
                     INNER JOIN acteur a
                         ON p.id_personne = a.id_personne

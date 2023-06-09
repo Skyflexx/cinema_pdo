@@ -63,7 +63,7 @@
 
         public function currPersonEditing($id){ // Personne en cours d'édition. Afficheant les détails actuels.
 
-            $dao = new DAO();
+            $dao = new DAO();            
 
             $sql = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, p.id_personne
                     FROM personne p

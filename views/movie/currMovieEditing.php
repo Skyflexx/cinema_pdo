@@ -16,6 +16,20 @@
     
 }
 
+$checkRating1 = "";
+$checkRating2 = "";
+$checkRating3 = "";
+$checkRating4 = "";
+$checkRating5 = "";
+
+switch ($rating) {
+    case 1: $checkRating1 = "checked"; break;
+    case 2: $checkRating2 = "checked"; break;
+    case 3 : $checkRating3 = "checked"; break;
+    case 4 : $checkRating4 = "checked"; break;
+    case 5 : $checkRating5 = "checked"; break;
+}
+
 ?>
 
 <h2 class="text-center text-primary"><?= $title?></h2>
@@ -42,27 +56,27 @@
         <p>Modifier la note : </p>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" value="1">
+            <input class="form-check-input" type="radio" name="rating" value="1" <?=$checkRating1?>>
             <label class="form-check-label" for="inlineRadio1">1</label>
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" value="2">
+            <input class="form-check-input" type="radio" name="rating" value="2" <?=$checkRating2?>>
             <label class="form-check-label" for="inlineRadio2">2</label>            
         </div>
             
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" value="3">
+            <input class="form-check-input" type="radio" name="rating" value="3" <?=$checkRating3?>>
             <label class="form-check-label" for="inlineRadio3">3</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" value="4">
+            <input class="form-check-input" type="radio" name="rating" value="4" <?=$checkRating4?>>
             <label class="form-check-label" for="inlineRadio3">4</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rating" value="5">
+            <input class="form-check-input" type="radio" name="rating" value="5" <?=$checkRating5?>>
             <label class="form-check-label" for="inlineRadio3">5</label>
         </div>
 
