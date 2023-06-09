@@ -42,7 +42,7 @@
 
             $dao = new DAO();
 
-            $sql = "SELECT f.id_film, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie, p.nom, p.prenom, p.image, r.nom_role
+            $sql = "SELECT f.id_film, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') AS annee_sortie, p.nom, p.prenom, p.image, p.sexe, p.date_naissance, r.nom_role, p.id_personne
                     FROM film f
                     INNER JOIN casting c
                     ON f.id_film = c.id_film

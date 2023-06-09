@@ -12,8 +12,11 @@
 
     while ($film = $filmList->fetch()){
         
+        $idPerson = $film['id_personne']; // Variable qu'on récupère dans la requête qui sort toute la filmographie d'un acteur.
         $nomActor = $film['prenom']." ".$film['nom']; 
         $imgActor = $film['image'];
+        $genderActor = $film['sexe'];
+        $birthDate = $film['date_naissance'];
         echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=detailFilm&id=".$film['id_film']."'>".$film['titre_film']." sorti en  ".$film['annee_sortie']." - (".$film['nom_role'].")</a></li>";
         
     }
@@ -22,9 +25,12 @@
 
     echo "<div class ='col mx-auto'>
     <div class='card my-3' style='width: 10rem;'>
+    <a href='index.php?action=currPersonEditing&id=".$idPerson."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
         <img class='card-img-top' src='".$imgActor."' alt='Card image cap'>
             <div class='card-body'>
-                <h6 class='card-title'>".$nomActor."</h5>                
+                <h6 class='card-title'>".$nomActor."</h5> 
+                <p>Sexe : ".$genderActor."</p>     
+                <p>Date de naissance : ".$birthDate."</p>          
             </div>
         </div>
     </div>";    
