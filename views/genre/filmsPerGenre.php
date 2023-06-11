@@ -4,14 +4,12 @@
 
 <h2>Liste des films du genre</h2>
 
-
-
 <?php 
 
 echo "<div class='container p-5'>
         <div class ='row'>";
 
-while ($film = $listeFilmsGenre->fetch()){       
+while ($film = $listeFilmsGenre->fetch()){   // Affiches les films dans des cards pour un genre donné    
 
     echo "<div class ='col'>
         <div class='card my-1' style='width: 15rem;'>
@@ -22,8 +20,7 @@ while ($film = $listeFilmsGenre->fetch()){
                     <a class='btn btn-outline-info btn-sm' href='index.php?action=detailFilm&id=".$film['id_film']."'>En savoir plus</a>
                 </div>
             </div>
-        </div>";
-    
+        </div>";    
 }
 
 echo "</div>

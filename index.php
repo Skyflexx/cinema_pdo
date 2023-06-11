@@ -31,7 +31,18 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
 
     // On fait une Version simplifiée pour l'instant : index.php?action=listFilms
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['editPerson'])){
+
+        $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+        $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
+        $birthDate= filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
+        $gender = filter_input(INPUT_POST, "gender", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        
+        $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);  // Après vérif, on appelle la fct editPerson.     
+    }
+
+    if(isset($_POST['editMovie'])){
 
         $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
@@ -39,13 +50,8 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
         $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
         $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
         $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT); 
-        
-        switch($_POST['submit']){ // Dans le $_GET si le contenu de l'action est listFilms, listActors ou listGenres, alors on fait appel aux méthodes des objets suivants.
-           
-            case 'editFilm' : $filmCtrl->editMovie($id); break;
 
-        }
-
+        $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);  // Si un submit au nom de editPerson on lance la fct editer après vérification.
     }
 
         if(isset($_GET['action'])){
@@ -54,9 +60,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
             // Récupère le contenu dans le GET, dont le nom est 'id', le filtre puis le CAST en INT avec notre filtre number int.
 
-            // Variables à filtrer dans le GET 
-
-           
+            // Variables à filtrer dans le GET            
 
             switch($_GET['action']){ // Dans le $_GET si le contenu de l'action est listFilms, listActors ou listGenres, alors on fait appel aux méthodes des objets suivants.
                 case 'listFilms': $filmCtrl->findAllFilms(); break;
@@ -66,14 +70,14 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
                 case 'filmographie' : $personCtrl->showRealFilmography($id); break;
                 case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
                 case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
-                case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;
-               
+                case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;  
+                case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;            
 
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
             }
         } else {
-            $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage()
+            // $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage() // Retrait car s'affichait en trop après une modif
         }
 
 ?>

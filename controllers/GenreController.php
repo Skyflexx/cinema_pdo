@@ -2,7 +2,7 @@
 
     class GenreController{
 
-        public function findAllGenres(){
+        public function findAllGenres(){ // Permet de lister tous les genres
 
             $dao = new DAO(); // Instanciation du DAO pour se connecter à la BDD
 
@@ -15,7 +15,7 @@
             require "views/genre/listGenres.php";
         }      
         
-        public function showFilmsPerGenre($id){
+        public function showFilmsPerGenre($id){ // Permet de lister les films pour un genre donné en paramètres.
 
             $dao = new DAO();
 

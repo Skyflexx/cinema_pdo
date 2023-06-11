@@ -54,6 +54,5 @@ class DAO{ // Permettra de construire un objet pour me connecter grace à PDO à
             $resultat->execute($params);
         }
         return $resultat;
-
     }
 }
