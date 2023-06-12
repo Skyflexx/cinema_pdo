@@ -21,12 +21,12 @@ USE `cinema`;
 
 -- Listage de la structure de table cinema. acteur
 CREATE TABLE IF NOT EXISTS `acteur` (
-  `id_acteur` int NOT NULL,
+  `id_acteur` int NOT NULL AUTO_INCREMENT,
   `id_personne` int NOT NULL,
   PRIMARY KEY (`id_acteur`),
   UNIQUE KEY `id_personne` (`id_personne`),
-  CONSTRAINT `acteur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_acteur_personne` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.acteur : ~68 rows (environ)
 INSERT INTO `acteur` (`id_acteur`, `id_personne`) VALUES
@@ -105,10 +105,10 @@ CREATE TABLE IF NOT EXISTS `appartenir` (
   `id_genre` int NOT NULL,
   PRIMARY KEY (`id_film`,`id_genre`),
   KEY `id_genre` (`id_genre`),
-  CONSTRAINT `appartenir_ibfk_2` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id_genre`)
+  CONSTRAINT `FK_appartenir_genre` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id_genre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table cinema.appartenir : ~17 rows (environ)
+-- Listage des données de la table cinema.appartenir : ~21 rows (environ)
 INSERT INTO `appartenir` (`id_film`, `id_genre`) VALUES
 	(2, 1),
 	(3, 1),
@@ -116,9 +116,13 @@ INSERT INTO `appartenir` (`id_film`, `id_genre`) VALUES
 	(7, 1),
 	(8, 1),
 	(9, 1),
+	(23, 1),
+	(25, 1),
 	(2, 2),
 	(4, 2),
 	(6, 2),
+	(24, 2),
+	(25, 2),
 	(1, 3),
 	(7, 3),
 	(10, 3),
@@ -136,9 +140,9 @@ CREATE TABLE IF NOT EXISTS `casting` (
   PRIMARY KEY (`id_film`,`id_acteur`,`id_role`),
   KEY `id_acteur` (`id_acteur`),
   KEY `id_role` (`id_role`),
-  CONSTRAINT `casting_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
-  CONSTRAINT `casting_ibfk_2` FOREIGN KEY (`id_acteur`) REFERENCES `acteur` (`id_acteur`),
-  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`)
+  CONSTRAINT `FK_casting_acteur` FOREIGN KEY (`id_acteur`) REFERENCES `acteur` (`id_acteur`),
+  CONSTRAINT `FK_casting_film` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
+  CONSTRAINT `FK_casting_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.casting : ~63 rows (environ)
@@ -228,7 +232,7 @@ CREATE TABLE `detail_film` (
 
 -- Listage de la structure de table cinema. film
 CREATE TABLE IF NOT EXISTS `film` (
-  `id_film` int NOT NULL,
+  `id_film` int NOT NULL AUTO_INCREMENT,
   `titre_film` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `annee_sortie` date DEFAULT NULL,
   `duree_film` int DEFAULT NULL,
@@ -236,11 +240,11 @@ CREATE TABLE IF NOT EXISTS `film` (
   `note` float DEFAULT NULL,
   `affiche` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `wallpaper` varchar(255) DEFAULT NULL,
-  `id_realisateur` int NOT NULL,
+  `id_realisateur` int DEFAULT NULL,
   PRIMARY KEY (`id_film`),
   KEY `id_realisateur` (`id_realisateur`),
-  CONSTRAINT `film_ibfk_1` FOREIGN KEY (`id_realisateur`) REFERENCES `realisateur` (`id_realisateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_film_personne` FOREIGN KEY (`id_realisateur`) REFERENCES `personne` (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.film : ~10 rows (environ)
 INSERT INTO `film` (`id_film`, `titre_film`, `annee_sortie`, `duree_film`, `synopsis`, `note`, `affiche`, `wallpaper`, `id_realisateur`) VALUES
@@ -257,10 +261,10 @@ INSERT INTO `film` (`id_film`, `titre_film`, `annee_sortie`, `duree_film`, `syno
 
 -- Listage de la structure de table cinema. genre
 CREATE TABLE IF NOT EXISTS `genre` (
-  `id_genre` int NOT NULL,
+  `id_genre` int NOT NULL AUTO_INCREMENT,
   `nom_genre` varchar(50) NOT NULL,
   PRIMARY KEY (`id_genre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.genre : ~11 rows (environ)
 INSERT INTO `genre` (`id_genre`, `nom_genre`) VALUES
@@ -278,14 +282,14 @@ INSERT INTO `genre` (`id_genre`, `nom_genre`) VALUES
 
 -- Listage de la structure de table cinema. personne
 CREATE TABLE IF NOT EXISTS `personne` (
-  `id_personne` int NOT NULL,
+  `id_personne` int NOT NULL AUTO_INCREMENT,
   `prenom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `sexe` varchar(50) DEFAULT NULL,
   `date_naissance` date DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_personne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.personne : ~75 rows (environ)
 INSERT INTO `personne` (`id_personne`, `prenom`, `nom`, `sexe`, `date_naissance`, `image`) VALUES
@@ -298,10 +302,10 @@ INSERT INTO `personne` (`id_personne`, `prenom`, `nom`, `sexe`, `date_naissance`
 	(7, 'Margot', 'Robbie', 'F', '1990-07-02', 'https://fr.web.img5.acsta.net/c_310_420/pictures/20/01/31/14/13/5661728.jpg'),
 	(8, 'Leonardo', 'DiCaprio', 'M', '1974-11-11', 'https://fr.web.img3.acsta.net/c_310_420/pictures/15/06/24/14/36/054680.jpg'),
 	(9, 'Jonah', 'Hill', 'M', '1983-12-20', 'https://fr.web.img6.acsta.net/c_310_420/pictures/18/09/12/12/03/5412955.jpg'),
-	(10, 'Matthew', 'McConaughey', 'M', '1969-11-04', 'https://fr.web.img2.acsta.net/c_310_420/pictures/16/03/02/17/16/573123.jpg'),
+	(10, 'McConaughey', 'Matthew', 'M', '1969-11-04', 'https://fr.web.img2.acsta.net/c_310_420/pictures/16/03/02/17/16/573123.jpg'),
 	(11, 'Kate', 'Winslet', 'F', '1975-10-05', 'https://fr.web.img3.acsta.net/c_310_420/pictures/15/09/15/10/01/065591.jpg'),
 	(12, 'Sigourney', 'Weaver', 'F', '1949-10-08', 'https://fr.web.img2.acsta.net/c_310_420/pictures/15/07/27/13/14/152942.jpg'),
-	(13, 'Ian', 'Holm', 'M', '1931-09-12', 'https://fr.web.img5.acsta.net/c_310_420/pictures/17/01/16/17/23/344698.jpg'),
+	(13, 'Holm', 'Ian', 'M', '1931-09-12', 'https://fr.web.img5.acsta.net/c_310_420/pictures/17/01/16/17/23/344698.jpg'),
 	(14, 'Luc', 'Besson', 'M', '1959-03-18', 'https://fr.web.img4.acsta.net/c_310_420/pictures/17/07/18/16/33/061543.jpg'),
 	(15, 'Christopher', 'Nolan', 'M', '1970-07-30', 'https://fr.web.img5.acsta.net/c_310_420/pictures/14/10/30/10/59/215487.jpg'),
 	(16, 'Martin', 'Scorsese', 'M', '1942-11-17', 'https://fr.web.img6.acsta.net/c_310_420/pictures/19/09/09/12/00/5874736.jpg'),
@@ -367,12 +371,12 @@ INSERT INTO `personne` (`id_personne`, `prenom`, `nom`, `sexe`, `date_naissance`
 
 -- Listage de la structure de table cinema. realisateur
 CREATE TABLE IF NOT EXISTS `realisateur` (
-  `id_realisateur` int NOT NULL,
+  `id_realisateur` int NOT NULL AUTO_INCREMENT,
   `id_personne` int NOT NULL,
   PRIMARY KEY (`id_realisateur`),
   UNIQUE KEY `id_personne` (`id_personne`),
-  CONSTRAINT `realisateur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_realisateur_personne` FOREIGN KEY (`id_realisateur`) REFERENCES `personne` (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.realisateur : ~7 rows (environ)
 INSERT INTO `realisateur` (`id_realisateur`, `id_personne`) VALUES
@@ -386,10 +390,10 @@ INSERT INTO `realisateur` (`id_realisateur`, `id_personne`) VALUES
 
 -- Listage de la structure de table cinema. role
 CREATE TABLE IF NOT EXISTS `role` (
-  `id_role` int NOT NULL,
+  `id_role` int NOT NULL AUTO_INCREMENT,
   `nom_role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema.role : ~64 rows (environ)
 INSERT INTO `role` (`id_role`, `nom_role`) VALUES
