@@ -90,7 +90,7 @@
     
     <input type="hidden" name="id" value="<?= $id ?>"> <!-- stockage dans $post de l'id du film par le biais d'un input hidden -->        
     
-    <button type="submit" class="btn btn-primary my-3" name="editMovie" >Valider</button>
+    <button type="submit" class="btn btn-primary my-3" name="editMovie">Valider</button>
 
     </form>
 

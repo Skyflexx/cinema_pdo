@@ -71,13 +71,15 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
                 case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
                 case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
                 case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;  
-                case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;            
-
+                case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;
+                case 'btnAddFilm' : $filmCtrl->formAddFilm(); break;         
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
             }
         } else {
-            // $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage() // Retrait car s'affichait en trop après une modif
+             $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage() // Retrait car s'affichait en trop après une modif
+
+             // Obligatoire au lancement.
         }
 
 ?>

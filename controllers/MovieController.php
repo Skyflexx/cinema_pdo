@@ -3,6 +3,32 @@
 
     class MovieController {
 
+        public function formAddFilm(){
+
+            $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
+
+            // selection des realisateurs à afficher pour le formulaire du film
+
+            // On fera la même chose pour afficher les genres
+
+            $sql = "SELECT p.prenom, p.nom, p.id_personne
+                    FROM personne p
+                    INNER JOIN realisateur r
+                    ON p.id_personne = r.id_personne;
+                    ";
+
+            
+                    
+            $realisators = $dao->executerRequete($sql);
+
+            require "views/movie/formAddFilm.php";
+
+        }
+
+        public function addFilm($params){
+
+        }
+
         public function currMovieEditing($id){ // fonction "Film en cours d'édition". qui sortira tous les éléments nécessaires à la modification d'un film.
 
             $dao = new DAO();

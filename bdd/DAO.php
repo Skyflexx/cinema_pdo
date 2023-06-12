@@ -48,7 +48,7 @@ class DAO{ // Permettra de construire un objet pour me connecter grace à PDO à
 
     public function executerRequete($sql, $params = NULL){
         if ($params == NULL){
-            $resultat = $this->bdd->query($sql);
+            $resultat = $this->bdd->query($sql); // execute directement la request demandée
         }else{
             $resultat = $this->bdd->prepare($sql);
             $resultat->execute($params);

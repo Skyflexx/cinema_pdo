@@ -4,6 +4,20 @@
 
     class PersonController{
 
+        // public function findAllRealisators(){
+        //     $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
+
+        //     $sql = "SELECT p.prenom, p.nom, p.id_personne
+        //             FROM personne p
+        //             INNER JOIN realisateur r
+        //             ON p.id_personne = r.id_personne;
+        //             ";
+                    
+        //     $realisators = $dao->executerRequete($sql);
+
+        //     require "views/movie/formAddFilm.php";
+        // }
+
         public function findAllActors(){ // Permet de lister les acteurs.
 
             $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.

@@ -2,11 +2,14 @@
     ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.
 ?>
 
-<h2 class='mt-3'>Liste des films</h2>
+<h2 class='mt-3'>Liste des films <a class='btn btn-outline-info btn-sm' href='index.php?action=btnAddFilm'>Ajouter un film</a></h2>
 
 <!-- <?= $films->rowCount()?> par une fonction native de php on peut compter le nombre de lignes -->
 
+
 <?php 
+
+
 
     echo "<div class='container p-5'>
             <div class ='row'>";
