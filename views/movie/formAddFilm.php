@@ -72,3 +72,8 @@
     <button type="submit" class="btn btn-primary my-3" name="addMovie">Valider</button>
 
     </form>
+<?php 
+    $title = "Ajouter un film";
+    $content = ob_get_clean();
+    require "views/template.php";
+?>
