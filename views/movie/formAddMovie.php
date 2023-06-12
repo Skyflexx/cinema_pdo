@@ -4,7 +4,7 @@
 
 <!-- Différents formulaires en méthode post pour les formulaires de création d'un film -->
 
-<form action = 'index.php' method='post'>
+<form action = "index.php?action=addMovie" method='post'>
     <div class="form-group my-1">
         <label for="title">Titre</label>
         <textarea class="form-control" aria-label="With textarea" name="title" placeholder="Titre du film"></textarea>                    
@@ -33,7 +33,7 @@
    
     </select>
 
-    <select class="form-select" name = "id_genre" aria-label="Default select example"> <!-- selection des réalisateurs -->
+    <select class="form-select" name = "id_genre" multiple aria-label="Default select example"> <!-- selection des réalisateurs -->
 
     <option selected>Genre</option>
 

@@ -30,19 +30,18 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
     // ex : index.php?ctrl=movieCtrl&action=listFilms
 
     // On fait une Version simplifiée pour l'instant : index.php?action=listFilms
-    if(isset($_POST['addMovie'])){
-
+    // if(isset($_POST['addMovie'])){
         
-        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
-        $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                 
-        $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
-        $id_genre = filter_input(INPUT_POST, "id_genre", FILTER_VALIDATE_INT); // récup du genre pour la jonction BDD
-        $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
+    //     $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+    //     $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    //     $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+    //     $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                 
+    //     $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
+    //     $id_genre = filter_input(INPUT_POST, "id_genre", FILTER_VALIDATE_INT); // récup du genre pour la jonction BDD
+    //     $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
 
-        $filmCtrl->addMovie($title, $releaseDate, $duration, $synopsis, $rating, $id_genre, $id_realisateur);
-    }
+    //     $filmCtrl->addMovie($title, $releaseDate, $duration, $synopsis, $rating, $id_genre, $id_realisateur);
+    // }
 
     if(isset($_POST['editPerson'])){
 
@@ -67,33 +66,47 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
         $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);  // Si un submit au nom de editPerson on lance la fct editer après vérification.
     }
 
-        if(isset($_GET['action'])){
+    if(isset($_POST['action'])){
 
-            // $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
-            $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
-            // Récupère le contenu dans le GET, dont le nom est 'id', le filtre puis le CAST en INT avec notre filtre number int.
+        switch($_POST['action']){
 
-            // Variables à filtrer dans le GET            
+            case 'addMovie': $filmCtrl->addMovie($_POST); break;
+            // case 'editPerson': $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);   
+            // case 'editMovie': $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);
 
-            switch($_GET['action']){ // Dans le $_GET si le contenu de l'action est listFilms, listActors ou listGenres, alors on fait appel aux méthodes des objets suivants.
-                case 'listFilms': $filmCtrl->findAllFilms(); break;
-                case 'listActors': $personCtrl->findAllActors(); break;
-                case 'listGenres': $genreCtrl->findAllGenres(); break;
-                case 'detailFilm' : $filmCtrl->showFilmDetails($id); break; // $id en paramètre qu'on a filtré au dessus. 
-                case 'filmographie' : $personCtrl->showRealFilmography($id); break;
-                case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
-                case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
-                case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;  
-                case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;
-                case 'btnAddFilm' : $filmCtrl->formAddMovie(); break;
-                // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
-                //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
-                default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
-            }
-        } else {
-             $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage() // Retrait car s'affichait en trop après une modif
-
-             // Obligatoire au lancement.
         }
+
+
+    }
+
+    if(isset($_GET['action'])){
+
+        // $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
+        $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
+        // Récupère le contenu dans le GET, dont le nom est 'id', le filtre puis le CAST en INT avec notre filtre number int.
+
+        // Variables à filtrer dans le GET            
+
+        switch($_GET['action']){ // Dans le $_GET si le contenu de l'action est listFilms, listActors ou listGenres, alors on fait appel aux méthodes des objets suivants.
+            case 'listFilms': $filmCtrl->findAllFilms(); break;
+            case 'listActors': $personCtrl->findAllActors(); break;
+            case 'listGenres': $genreCtrl->findAllGenres(); break;
+            case 'detailFilm' : $filmCtrl->showFilmDetails($id); break; // $id en paramètre qu'on a filtré au dessus. 
+            case 'filmographie' : $personCtrl->showRealFilmography($id); break;
+            case 'actorfilmographie' : $personCtrl->showActorFilmography($id); break;
+            case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
+            case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;  
+            case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;
+            case 'btnAddFilm' : $filmCtrl->formAddMovie(); break;
+            case 'addMovie': $filmCtrl->addMovie($_POST); break;
+            // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
+            //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
+            default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
+        }
+    } else {
+            $homeCtrl->homePage(); // Retour à la page d'accueil par la methode homePage() // Retrait car s'affichait en trop après une modif
+
+            // Obligatoire au lancement.
+    }
 
 ?>
