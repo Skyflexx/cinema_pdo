@@ -30,6 +30,19 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
     // ex : index.php?ctrl=movieCtrl&action=listFilms
 
     // On fait une Version simplifiée pour l'instant : index.php?action=listFilms
+    if(isset($_POST['addMovie'])){
+
+        
+        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+        $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+        $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                 
+        $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
+        $id_genre = filter_input(INPUT_POST, "id_genre", FILTER_VALIDATE_INT); // récup du genre pour la jonction BDD
+        $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
+
+        $filmCtrl->addMovie($title, $releaseDate, $duration, $synopsis, $rating, $id_genre, $id_realisateur);
+    }
 
     if(isset($_POST['editPerson'])){
 
@@ -72,7 +85,8 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
                 case 'filmsPerGenre' : $genreCtrl->showFilmsPerGenre($id); break;
                 case 'currMovieEditing' : $filmCtrl->currMovieEditing($id); break;  
                 case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;
-                case 'btnAddFilm' : $filmCtrl->formAddFilm(); break;         
+                case 'btnAddFilm' : $filmCtrl->formAddMovie(); break;
+                // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
                 //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
                 default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.
             }

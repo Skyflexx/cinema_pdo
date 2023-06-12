@@ -3,7 +3,7 @@
 
     class MovieController {
 
-        public function formAddFilm(){
+        public function formAddMovie(){
 
             $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
 
@@ -11,21 +11,49 @@
 
             // On fera la même chose pour afficher les genres
 
-            $sql = "SELECT p.prenom, p.nom, p.id_personne
+            $sql = "SELECT p.prenom, p.nom, p.id_personne, r.id_realisateur
                     FROM personne p
                     INNER JOIN realisateur r
                     ON p.id_personne = r.id_personne;
-                    ";
-
-            
+                    ";            
                     
             $realisators = $dao->executerRequete($sql);
 
-            require "views/movie/formAddFilm.php";
+            $sql2 = "SELECT g.nom_genre, id_genre
+                     FROM genre g            
+                     ";            
+            
+            $genres = $dao->executerRequete($sql2);
+
+            require "views/movie/formAddMovie.php";
 
         }
 
-        public function addFilm($params){
+        public function addMovie($title, $releaseDate, $duration, $synopsis, $rating, $id_genre, $id_realisateur){
+
+            $dao = new DAO();
+
+            $sql1 = "INSERT INTO film (titre_film, annee_sortie, duree_film, synopsis, note, id_realisateur)
+                     VALUES (:titre_film, :annee_sortie, :duree_film, :synopsis, :note, :id_realisateur);";        
+
+            $sql2 = "INSERT INTO appartenir (id_film, id_genre)
+                    VALUES (:id_film, :id_genre);";
+
+            // $sql1-> execute(array(':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur ));
+
+            // $sql2-> execute(array(':id_film' => $id_film, ':id_genre' => $id_genre));
+
+            $addMovie = $dao->executerRequete($sql1, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur]);
+
+            $id_new_film = $dao->getBDD()->lastInsertId();
+            
+            $addIntoGenre = $dao->executerRequete($sql2, [':id_film' => $id_new_film, ':id_genre' => $id_genre]);
+
+            
+
+            $this->showFilmDetails($id_new_film);
+
+            
 
         }
 
@@ -61,8 +89,8 @@
 
         public function editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating){ // Fonction qui est appelée en appuyant sur "ok" depuis la fonction currMovieEditing. Elle permettra la maj SQL.
 
-            // récupération des infos de $post puis injection SQL            
-
+            // récupération des infos de $post puis injection SQL    
+             
             $dao = new DAO();
 
             $sql="UPDATE film f

@@ -19,7 +19,7 @@
 
     <header class ='bg-dark text-warning py-3'>        
         <figure><img id = "frog" src="public/images/frog.png"></figure>
-        <h1 class='my-auto mx-3'>SKY CINE</h1>   
+        <h1 class='my-auto mx-3'>SKY-CINE</h1>   
     </header>
 
     <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center">      
