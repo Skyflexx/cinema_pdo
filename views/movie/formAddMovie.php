@@ -33,7 +33,7 @@
    
     </select>
 
-    <select class="form-select" name = "id_genre" multiple aria-label="Default select example"> <!-- selection des réalisateurs -->
+    <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example"> <!-- selection des réalisateurs -->
 
     <option selected>Genre</option>
 

@@ -36,10 +36,10 @@
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                 
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
-            $id_genres = filter_var_array(INPUT_POST,"id_genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
+            $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
 
-            var_dump($id_genres);
+            // var_dump($_POST['id_genre[]']);
 
             $dao = new DAO();
 
@@ -48,15 +48,14 @@
 
             $sql2 = "INSERT INTO appartenir (id_film, id_genre)
                     VALUES (:id_film, :id_genre);"; 
-
-            // filter var array pour les genres
-                     
-            // un foreach par ici pour creer tous les genres            
+           
 
             $addMovie = $dao->executerRequete($sql1, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur]);
 
             $id_new_film = $dao->getBDD()->lastInsertId(); // récupère l'ID auto incrémenté qui s'est créé lors de l'ajout du film. On va pouvoir intéragir avec du coup.
 
+            // FIULTER VAR ARRAY va filtrer chaque variable de l'array id_genres q
+            
             foreach ($id_genres as $id_genre){
 
                 $addIntoGenre = $dao->executerRequete($sql2, [':id_film' => $id_new_film, ':id_genre' => $id_genre]);
