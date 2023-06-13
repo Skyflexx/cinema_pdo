@@ -103,7 +103,7 @@
 
             $detailFilm = $dao->executerRequete($sqlActual);
 
-            $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role, p.id_personne
+            $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role, p.id_personne, c.id_acteur
                     FROM personne p
                     INNER JOIN acteur a
                         ON p.id_personne = a.id_personne
@@ -115,8 +115,63 @@
 
             $acteursFilm = $dao->executerRequete($sql2);
 
+          
+
             require "views/movie/currMovieEditing.php"; // on appelle currMovieEditing.php qui affiche tous les formulaires nécessaires à la modif d'un film.
 
+        }
+    
+        public function formEditCasting($id){
+
+            $dao = new DAO();
+
+            $sql1 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role, p.id_personne, c.id_acteur
+                    FROM personne p
+                    INNER JOIN acteur a
+                        ON p.id_personne = a.id_personne
+                    INNER JOIN casting c
+                        ON a.id_acteur = c.id_acteur 
+                    INNER JOIN role r
+                        ON c.id_role = r.id_role
+                    WHERE c.id_film = $id";
+
+            $acteursFilm = $dao->executerRequete($sql1); // affichage des différents castings actuels du film.
+
+              // sql3 va chercher la liste des acteurs pour qu'on puisse les selectionner dans une liste déroulante.
+            $sql2 = "SELECT p.id_personne, p.nom, p.prenom, a.id_acteur
+                    FROM personne p
+                    INNER JOIN acteur a
+                    ON p.id_personne = a.id_personne";
+
+            $acteurs = $dao->executerRequete($sql2); // permet la selection dans une liste des acteurs
+
+            $sql3 = "SELECT r.id_role, r.nom_role
+                    FROM role r
+                    ";
+                    
+            $roles = $dao->executerRequete($sql3); // permet la selection dans une liste des roles
+
+            require "views/movie/editCasting.php";
+        }
+
+        public function addCasting($id){ // contient le $_POST 
+
+            $dao = new DAO();
+
+            var_dump($id); // ID EST NULL
+            
+            $id_acteur = filter_input(INPUT_POST, "acteur", FILTER_VALIDATE_INT);
+            $id_role = filter_input(INPUT_POST, "role", FILTER_VALIDATE_INT);
+            $id_film = $id;
+            
+            
+            $sql1 = "INSERT INTO casting (id_film, id_acteur, id_role)
+
+            VALUES (:id_film, :id_acteur, :id_role)";  
+
+            $addCasting = $dao->executerRequete($sql1, [':id_film' => $id_film, ':id_acteur' => $id_acteur, 'id_role' => $id_role]);
+
+            $this->formEditCasting($id);
         }
 
         public function editMovie($array){ // Fonction qui est appelée en appuyant sur "ok" depuis la fonction currMovieEditing. Elle permettra la maj SQL.
@@ -160,7 +215,7 @@
 
             $castings = $dao->executerRequete($sql);
 
-            var_dump($get);           
+            $this->formEditCasting($id_film);       
 
         }
 

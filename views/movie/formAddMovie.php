@@ -27,9 +27,9 @@
         <?php while ($realisateur = $realisators->fetch()){ // Utilisatuion d'un fetch pour que les real soient dans la liste
 
         echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
-    }
+        }
 
-    ?>
+        ?>
    
     </select>
 

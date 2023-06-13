@@ -90,15 +90,22 @@
         <input type="text" class="form-control" id="duration" name="duration" value="<?= $duration ?>">
     </div>   
     
-    <input type="hidden" name="id" value="<?= $id ?>"> <!-- stockage dans $post de l'id du film par le biais d'un input hidden -->        
+    <input type="hidden" name="id" value="<?= $id ?>"> <!-- stockage dans $post de l'id du film par le biais d'un input hidden -->  
+    
+   
     
     <button type="submit" class="btn btn-primary my-3" name="editMovie">Valider</button>
 
-    </form>
+   
 
-<?php 
-  
+    
+    <a class='btn btn-info btn-sm' href='index.php?action=formEditCasting&id=<?=$id?>'>Modifier le casting</a> <!-- Avec l'ID du film -->
+    
+<?php   
+
     echo "<div class ='mx-5 row'>";
+
+    
 
     while ($acteur = $acteursFilm->fetch()){ // Affichage de tous les acteurs pour pouvoir les delete ou les modif par la suite/
       
@@ -109,8 +116,7 @@
                             <div class='card-body'>
                                 <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
                                 <p>Né(e) le : ".$acteur['date_naissance']."</p>  
-                                <p>Rôle : ".$acteur['nom_role']." </p>
-                                <a class='btn btn-danger btn-sm' href='index.php?action=deleteActorInCast&id_film=$id&id_acteur=".$acteur['id_personne']."'>Supprimer</a>       
+                                <p>Rôle : ".$acteur['nom_role']." </p>                                      
                             </div>
                         </div>
                     </a>
@@ -118,7 +124,10 @@
     }
 
     echo "</div>";
+    ?>
 
+        
+<?php   
     $title = "Détail du film";
     $content = ob_get_clean();
     require "views/template.php";
