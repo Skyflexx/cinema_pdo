@@ -154,7 +154,7 @@
             require "views/movie/editCasting.php";
         }
 
-        public function addCasting($id){ // contient le $_POST 
+        public function addCasting($array){ // contient le $_POST 
 
             $dao = new DAO();
 
@@ -162,7 +162,7 @@
             
             $id_acteur = filter_input(INPUT_POST, "acteur", FILTER_VALIDATE_INT);
             $id_role = filter_input(INPUT_POST, "role", FILTER_VALIDATE_INT);
-            $id_film = $id;
+            $id_film = filter_var_array($array['id_film'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
             
             $sql1 = "INSERT INTO casting (id_film, id_acteur, id_role)

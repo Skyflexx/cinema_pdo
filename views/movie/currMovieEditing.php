@@ -96,8 +96,6 @@
     
     <button type="submit" class="btn btn-primary my-3" name="editMovie">Valider</button>
 
-   
-
     
     <a class='btn btn-info btn-sm' href='index.php?action=formEditCasting&id=<?=$id?>'>Modifier le casting</a> <!-- Avec l'ID du film -->
     

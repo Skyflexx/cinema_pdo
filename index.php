@@ -63,7 +63,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'editMovie' : $filmCtrl->editMovie($_POST); break;
             case 'deleteActorInCast' : $filmCtrl->deleteActorInCast($_GET); break;
             case 'formEditCasting' : $filmCtrl->formEditCasting($id); break;
-            case 'addCasting' : $filmCtrl->addCasting($id); break; // ID EST NULL
+            case 'addCasting' : $filmCtrl->addCasting($_POST); break; // ID EST NULL
             
             // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
