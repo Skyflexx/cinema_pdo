@@ -102,6 +102,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'deleteMovie' : $filmCtrl->deleteMovie($id); break; // delete d'un film avec son ID récupéré dans le href du btn dans currMovieEditing.
             case 'btnAddGenre' : $genreCtrl->formAddGenre(); break;
             case 'addGenre' : $genreCtrl->addGenre($_POST); break;
+            case 'deleteGenre' : $genreCtrl->deleteGenre($id); break;
             // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
             default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.

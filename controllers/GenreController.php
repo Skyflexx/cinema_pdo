@@ -6,6 +6,11 @@
 
             $dao = new DAO();
 
+            $sql2 = "SELECT f.id_film, f.titre_film
+            FROM film f"; // Permet de selectionner la liste de tous les films.
+
+            $films = $dao->executerRequete($sql2);
+
             require "views/genre/formAddGenre.php"; 
         }
 
@@ -14,22 +19,51 @@
             $dao = new DAO();
 
             $genre = filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+           
 
-            var_dump($_POST);
 
             $sql = "INSERT INTO genre (nom_genre)
                      VALUES (:nom_genre);";  
-
-            $addGenre = $dao->executerRequete($sql, [':nom_genre' => $genre]);
-
+                        
             $this->findAllGenres();
 
         }
 
-      
-
+        public function deleteGenre($id){
             
+            $dao = new DAO();
 
+            $sql1 = "
+            DELETE FROM genre g
+            WHERE id_genre = $id;
+            
+            DELETE FROM appartenir a
+            WHERE id_genre = $id;";
+
+            $deleteMovie = $dao->executerRequete($sql1); 
+
+            $this->findAllGenres(); // Appelle la fonction findAllFilms pour retourner à la liste des films
+
+        }
+
+        // public function addMovieIntoGenre($id){ //$id c'est l'id du genre en question
+
+        //     $dao = new DAO();
+
+        //     $sql = "INSERT INTO appartenir (id_film, id_genre)
+        //             VALUES (:id_film, :id_genre)";
+
+        //     $MovieIntoGenre = $dao->executerRequete($sql, [':id_film' => $id_film, ':id_genre' => $id_genre])
+
+        //     $this->showFilmsPerGenre($id); // on réaffiche la liste des films pour ce genre.
+
+        // }
+
+        // public function deleteMovieFromGenre(){
+
+        // }
+
+      
         public function findAllGenres(){ // Permet de lister tous les genres
 
             $dao = new DAO(); // Instanciation du DAO pour se connecter à la BDD

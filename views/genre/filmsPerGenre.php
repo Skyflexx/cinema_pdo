@@ -7,7 +7,7 @@
    };
 ?>
 
-<h2>Liste des films du genre <span class='text-info'><?= $nom ?></span><a class='btn btn-danger btn-sm' href='index.php?action=deleteGenre&id=<?= $id?>'>Supprimer le genre</a></h2>
+<h2>Liste des films du genre <span class='text-info'><?= $nom ?></span> <a class='btn btn-danger btn-sm' href='index.php?action=deleteGenre&id=<?= $id?>'>Supprimer le genre</a></h2>
 
 <?php 
 
