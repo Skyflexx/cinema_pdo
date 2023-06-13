@@ -38,7 +38,7 @@
 
 <!-- Différents formulaires en méthode post pour la modif d'un film -->
 
-<form action = 'index.php' method='post'>
+<form action = 'index.php?action=editMovie' method='post'> 
     <div class="form-group my-1">
         <label for="title">Titre</label>
         <textarea class="form-control" aria-label="With textarea" name="title"><?= $title ?></textarea>                    
@@ -109,7 +109,8 @@
                             <div class='card-body'>
                                 <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
                                 <p>Né(e) le : ".$acteur['date_naissance']."</p>  
-                                <p>Rôle : ".$acteur['nom_role']." </p>       
+                                <p>Rôle : ".$acteur['nom_role']." </p>
+                                <a class='btn btn-danger btn-sm' href='index.php?action=deleteActorInCast&id_film=$id&id_acteur=".$acteur['id_personne']."'>Supprimer</a>       
                             </div>
                         </div>
                     </a>

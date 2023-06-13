@@ -119,9 +119,16 @@
 
         }
 
-        public function editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating){ // Fonction qui est appelée en appuyant sur "ok" depuis la fonction currMovieEditing. Elle permettra la maj SQL.
+        public function editMovie($array){ // Fonction qui est appelée en appuyant sur "ok" depuis la fonction currMovieEditing. Elle permettra la maj SQL.
 
-            // récupération des infos de $post puis injection SQL    
+            // récupération des infos de $post puis injection SQL 
+            
+            $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
+            $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
+            $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
+            $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
              
             $dao = new DAO();
 
@@ -136,6 +143,24 @@
             $editFilm = $dao->executerRequete($sql);
 
             $this->showFilmDetails($id); // Permet de repasser au détail du film en question ce qui fait une maj instantannée.
+
+        }
+
+        public function deleteActorInCast($get){ // on récupère le contenu du GET
+
+            $id_film= filter_input(INPUT_GET, "id_film", FILTER_SANITIZE_NUMBER_INT);
+            $id_actor = filter_input(INPUT_GET, "id_acteur", FILTER_SANITIZE_NUMBER_INT);
+
+            
+            $dao = new DAO();
+
+            $sql="DELETE FROM casting c
+                WHERE c.id_acteur = $id_actor
+                AND c.id_film = $id_film;";
+
+            $castings = $dao->executerRequete($sql);
+
+            var_dump($get);           
 
         }
 

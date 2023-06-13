@@ -30,55 +30,11 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
     // ex : index.php?ctrl=movieCtrl&action=listFilms
 
     // On fait une Version simplifiée pour l'instant : index.php?action=listFilms
-    // if(isset($_POST['addMovie'])){
-        
-    //     $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-    //     $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    //     $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
-    //     $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                 
-    //     $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
-    //     $id_genre = filter_input(INPUT_POST, "id_genre", FILTER_VALIDATE_INT); // récup du genre pour la jonction BDD
-    //     $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
+    
+    // la ligne ci dessous : si dans le GET, çàd si il y a un url qui est envoyé (via action 'index.php?action=editMovie' par exemple)
 
-    //     $filmCtrl->addMovie($title, $releaseDate, $duration, $synopsis, $rating, $id_genre, $id_realisateur);
-    // }
-
-    if(isset($_POST['editPerson'])){
-
-        $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
-        $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
-        $birthDate= filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
-        $gender = filter_input(INPUT_POST, "gender", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        
-        $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);  // Après vérif, on appelle la fct editPerson.     
-    }
-
-    if(isset($_POST['editMovie'])){
-
-        $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
-        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-        $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
-        $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
-        $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
-        $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT); 
-
-        $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);  // Si un submit au nom de editPerson on lance la fct editer après vérification.
-    }
-
-    // if(isset($_POST['action'])){
-
-    //     switch($_POST['action']){
-
-    //         case 'addMovie': $filmCtrl->addMovie($_POST); break;
-    //         // case 'editPerson': $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);   
-    //         // case 'editMovie': $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);
-
-    //     }
-
-
-    // }
-
+    // on aurait pu mettre un autre mot que action. C'est le = qui importe et ce qu'il y a après. selon le cas on lance l'une ou l'autre fonction.
+      
     if(isset($_GET['action'])){
 
         // $id= filter_input(INPUT_GET, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // On oublie pas de filtrer l'ID qui est rentré par l'utilisateur.
@@ -103,6 +59,10 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'btnAddGenre' : $genreCtrl->formAddGenre(); break;
             case 'addGenre' : $genreCtrl->addGenre($_POST); break;
             case 'deleteGenre' : $genreCtrl->deleteGenre($id); break;
+            case 'editPerson' : $personCtrl->editPerson($_POST); break;
+            case 'editMovie' : $filmCtrl->editMovie($_POST); break;
+            case 'deleteActorInCast' : $filmCtrl->deleteActorInCast($_GET); break;
+            
             // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
             default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.

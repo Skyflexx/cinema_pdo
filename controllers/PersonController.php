@@ -4,20 +4,7 @@
 
     class PersonController{
 
-        // public function findAllRealisators(){
-        //     $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
-
-        //     $sql = "SELECT p.prenom, p.nom, p.id_personne
-        //             FROM personne p
-        //             INNER JOIN realisateur r
-        //             ON p.id_personne = r.id_personne;
-        //             ";
-                    
-        //     $realisators = $dao->executerRequete($sql);
-
-        //     require "views/movie/formAddFilm.php";
-        // }
-
+        
         public function findAllActors(){ // Permet de lister les acteurs.
 
             $dao = new DAO(); // On instancie le DAO pour se connecter à la BDD.
@@ -89,9 +76,15 @@
 
         }
 
-        public function editPerson($id, $nom, $prenom, $birthDate, $gender){ // Fonction qui permet l'édition dans la BDD d'une personne, puis qui rappelle la fct qui affiche le détail de la personne.
+        public function editPerson($array){ // Fonction qui permet l'édition dans la BDD d'une personne, puis qui rappelle la fct qui affiche le détail de la personne.
 
-            // récupération des infos de $post puis injection SQL            
+            // récupération des infos de $post puis injection SQL    $id, $nom, $prenom, $birthDate, $gender   
+            
+                $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+                $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+                $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
+                $birthDate= filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
+                $gender = filter_input(INPUT_POST, "gender", FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
 
             $dao = new DAO();
 

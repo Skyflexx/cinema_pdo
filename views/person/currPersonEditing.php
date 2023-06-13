@@ -25,7 +25,7 @@
 
 <h2 class="text-center text-primary"><?=$prenom." ".$nom?></h2>
 
-<form action = 'index.php' method='post'>
+<form action = 'index.php?action=editPerson' method='post'>
 
         <div class="form-group my-1">
             <label for="title">Nom</label>
