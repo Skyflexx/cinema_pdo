@@ -32,7 +32,9 @@
 
 ?>
 
-<h2 class="text-center text-primary"><?= $title?></h2> <!-- Affiche le titre du film en haut de la page -->
+<h2 class="text-center text-primary"><?= $title?> <a class='btn btn-danger btn-sm' href='index.php?action=deleteMovie&id=<?= $id?>'>Supprimer</a> </h2>
+
+<!-- On ajoute un btn delete. En action on appelera la fct deleteMovie avec en paramètres l'id du film-->
 
 <!-- Différents formulaires en méthode post pour la modif d'un film -->
 

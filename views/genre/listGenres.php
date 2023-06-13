@@ -2,7 +2,7 @@
     ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.
 ?>
 
-<h2>Les genres de films</h2>
+<h2>Les genres de films <a class='btn btn-outline-info btn-sm' href='index.php?action=btnAddGenre'>Ajouter un genre</a> </h2>
 
 <?php 
     while ($genre = $genres->fetch()){ // Affichera une liste non ordonnée des genres qui seront cliquables   

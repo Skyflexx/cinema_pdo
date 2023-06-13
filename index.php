@@ -66,18 +66,18 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
         $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);  // Si un submit au nom de editPerson on lance la fct editer après vérification.
     }
 
-    if(isset($_POST['action'])){
+    // if(isset($_POST['action'])){
 
-        switch($_POST['action']){
+    //     switch($_POST['action']){
 
-            case 'addMovie': $filmCtrl->addMovie($_POST); break;
-            // case 'editPerson': $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);   
-            // case 'editMovie': $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);
+    //         case 'addMovie': $filmCtrl->addMovie($_POST); break;
+    //         // case 'editPerson': $personCtrl->editPerson($id, $prenom, $nom, $birthDate, $gender);   
+    //         // case 'editMovie': $filmCtrl->editMovie($id, $title, $synopsis, $releaseDate, $duration, $rating);
 
-        }
+    //     }
 
 
-    }
+    // }
 
     if(isset($_GET['action'])){
 
@@ -99,6 +99,9 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'currPersonEditing' : $personCtrl->currPersonEditing($id); break;
             case 'btnAddFilm' : $filmCtrl->formAddMovie(); break;
             case 'addMovie': $filmCtrl->addMovie($_POST); break;
+            case 'deleteMovie' : $filmCtrl->deleteMovie($id); break; // delete d'un film avec son ID récupéré dans le href du btn dans currMovieEditing.
+            case 'btnAddGenre' : $genreCtrl->formAddGenre(); break;
+            case 'addGenre' : $genreCtrl->addGenre($_POST); break;
             // case 'addFilm' : $filmCtrl->addMovie(); break;    A AJOUTER APRES
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
             default : $homeCtrl->homePage(); // autre façon de faire par rapport au case d'au dessus.

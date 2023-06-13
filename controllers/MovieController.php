@@ -47,8 +47,7 @@
                      VALUES (:titre_film, :annee_sortie, :duree_film, :synopsis, :note, :id_realisateur);";  
 
             $sql2 = "INSERT INTO appartenir (id_film, id_genre)
-                    VALUES (:id_film, :id_genre);"; 
-           
+                    VALUES (:id_film, :id_genre);";            
 
             $addMovie = $dao->executerRequete($sql1, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur]);
 
@@ -60,10 +59,33 @@
 
                 $addIntoGenre = $dao->executerRequete($sql2, [':id_film' => $id_new_film, ':id_genre' => $id_genre]);
                 
-            }  
-            
+            }              
          
             $this->showFilmDetails($id_new_film);
+
+        }
+
+        public function deleteMovie($id){
+            
+            $dao = new DAO();
+
+            $sql1 = "
+
+            DELETE FROM film f
+
+            WHERE f.id_film = $id;
+
+            DELETE FROM casting c
+
+            WHERE c.id_film = $id;
+
+            DELETE FROM appartenir a
+
+            WHERE a.id_film = $id;";
+
+            $deleteMovie = $dao->executerRequete($sql1); 
+
+            $this->findAllFilms(); // Appelle la fonction findAllFilms pour retourner à la liste des films
 
         }
 
