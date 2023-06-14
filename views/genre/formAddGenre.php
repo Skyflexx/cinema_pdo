@@ -3,8 +3,7 @@
     <div class="form-group my-1">
         <label for="title">Nom du genre</label>
         <textarea class="form-control" aria-label="With textarea" name="genre" placeholder="Nom du genre"></textarea>                    
-    </div>
-  
+    </div>  
 
     <button type="submit" class="btn btn-primary my-3" name="addGenre">Valider</button>
 

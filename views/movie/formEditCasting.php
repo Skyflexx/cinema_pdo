@@ -9,13 +9,13 @@
 
         <option selected>Nom acteur</option>
 
-            <?php while ($acteur = $acteurs->fetch()){ 
-
-            echo "<option value = ".$acteur['id_acteur'].">".$acteur['id_acteur']." ".$acteur['nom']."</option>"; // La value récup l'id real.
+            <?php while ($acteur = $acteurs->fetch()){ // cette requête SQL permet également de sortir l'ID du film puisque lié au casting.
+            
+            echo "<option value = ".$acteur['id_acteur'].">".$acteur['prenom']." ".$acteur['nom']."</option>"; // La value récup l'id real.
 
             }?>   
     </select>
-
+   
     <select class="form-select mb-3" name ="role" aria-label="Default select example">
 
     <option selected>Selectionner le rôle</option>
@@ -28,14 +28,23 @@
 
     </select>
 
-    <input type="hidden" name="id_film" value="<?= $id?>"> <!-- ID EST NULL-->
-    
+    <!-- Permet la récupération de l'ID film par une requête SQL dédiée afin de l'injecter dans l'input hidden qui permettra l'ajout -->
+    <?php while($currFilm = $idMovie->fetch()){
+
+        $id_film = $currFilm['id_film'];
+
+    }?>
+
+    <input type="hidden" name="id_film" value="<?= $id_film?>">     
 
     <button type="submit" class="btn btn-primary my-3" name="addCasting">Ajouter</button>
+    
 
 </form>
 
+
 <?php   
+
     echo "<div class ='mx-5 row'>";
 
     while ($acteur = $acteursFilm->fetch()){ // Affichage de tous les acteurs pour pouvoir les delete ou les modif par la suite/

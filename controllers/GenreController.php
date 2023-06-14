@@ -6,10 +6,10 @@
 
             $dao = new DAO();
 
-            $sql2 = "SELECT f.id_film, f.titre_film
-            FROM film f"; // Permet de selectionner la liste de tous les films.
+            // $sql2 = "SELECT f.id_film, f.titre_film
+            // FROM film f"; // Permet de selectionner la liste de tous les films.
 
-            $films = $dao->executerRequete($sql2);
+            // $films = $dao->executerRequete($sql2);
 
             require "views/genre/formAddGenre.php"; 
         }
@@ -18,12 +18,12 @@
 
             $dao = new DAO();
 
-            $genre = filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
-           
-
+            $genre = filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
 
             $sql = "INSERT INTO genre (nom_genre)
                      VALUES (:nom_genre);";  
+
+            $addGenre = $dao->executerRequete($sql, [':nom_genre' => $genre]);
                         
             $this->findAllGenres();
 
