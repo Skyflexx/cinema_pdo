@@ -54,6 +54,18 @@
         <input type="date" class="form-control" name="releaseDate" value=<?= $releaseDate ?> required>
     </div>
 
+    <label for="id_genre">Choix du genre</label>
+    <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
+    
+            <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
+
+                echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
+
+                // $id_genre = $genre['id_genre'];
+                }        
+            ?>
+    </select>
+
     <!-- RATING -->
 
     <p>Modifier la note : </p>

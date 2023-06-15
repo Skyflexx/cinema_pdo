@@ -157,7 +157,13 @@
                         ON c.id_role = r.id_role
                     WHERE c.id_film = $id";
 
-            $acteursFilm = $dao->executerRequete($sql2);          
+            $acteursFilm = $dao->executerRequete($sql2);  
+            
+            $sql3 = "SELECT g.nom_genre, id_genre
+                     FROM genre g            
+                     ";            
+   
+            $genres = $dao->executerRequete($sql3);
 
             require "views/movie/formEditMovie.php"; // on appelle currMovieEditing.php qui affiche tous les formulaires nécessaires à la modif d'un film.
         }
@@ -172,6 +178,8 @@
             $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
+            $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
+            $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
              
             $dao = new DAO();
 
@@ -184,6 +192,25 @@
                     WHERE f.id_film = '$id';";   
                 
             $editFilm = $dao->executerRequete($sql);
+
+            // faire un delete de tous les genres  puis un foreach d'ajout de genre pour faire l'update car il n'y a pas forcemnent le même nbr de genre pour un film.
+
+            $sql2 = "DELETE FROM appartenir
+                    WHERE id_film = :id_film";            
+
+            $deleteFromAppartenir = $dao->executerRequete($sql2, [':id_film' => $id]);              
+                
+
+            $sql3 = "INSERT INTO appartenir (id_film, id_genre)
+            VALUES (:id_film, :id_genre);"; 
+
+            // FILTER VAR ARRAY va filtrer chaque variable de l'array id_genres q
+            
+            foreach ($id_genres as $id_genre){
+
+                $addIntoGenre = $dao->executerRequete($sql3, [':id_film' => $id, ':id_genre' => $id_genre]);
+                
+            }            
 
             $this->showFilmDetails($id); // Permet de repasser au détail du film en question ce qui fait une maj instantannée.
         }
