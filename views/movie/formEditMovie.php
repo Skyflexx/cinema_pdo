@@ -11,7 +11,9 @@
         $synopsis = $detail['synopsis'];
         $rating = $detail['note'];
         $duration = $detail['duree_film'];
-        $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.        
+        $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.
+        $id_genre = $detail['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
+        $nom_genre = $detail['nom_genre'];     
     }
 
     // Les lignes de codes ci-dessous permettent de rajouter le mot "checked" à la balise radio pour pré-cocher la bonne en fct du contenu de la BDD
@@ -53,6 +55,17 @@
         <label for="releaseDate">Date de sortie</label>
         <input type="date" class="form-control" name="releaseDate" value=<?= $releaseDate ?> required>
     </div>
+
+    <label for="id_realisateur">Choix du realisateur</label>
+    <select class="form-select mb-3" name = id_realisateur aria-label="Default select example" required> <!-- selection des réalisateurs -->
+
+        <option selected value="">Realisateur</option> <!-- au dessus, required indique qu'il faut une option avec une value non nulle (ici elle est nulle donc non prise en compte) -->
+
+        <?php while ($realisateur = $realisators->fetch()){ // Utilisatuion d'un fetch pour que les real soient dans la liste
+            echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
+            }
+        ?>   
+    </select>
 
     <label for="id_genre">Choix du genre</label>
     <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->

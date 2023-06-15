@@ -137,12 +137,17 @@
 
             $dao = new DAO();
 
-            $sqlActual = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film
+            // On récupère toutes les infos nécessaires au pré remplissage du formulaire avec les infos actuelles du film.
+            $sqlActual = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film, a.id_genre, g.nom_genre
                     FROM film f  
                     INNER JOIN realisateur r
                         ON f.id_realisateur = r.id_realisateur
                     INNER JOIN personne p
                         ON r.id_personne = p.id_personne
+                    INNER JOIN appartenir a
+                        ON f.id_film = a.id_film
+                    INNER JOIN genre g
+                        ON a.id_genre = g.id_genre
                     WHERE f.id_film = $id";           
 
             $detailFilm = $dao->executerRequete($sqlActual);
@@ -158,12 +163,21 @@
                     WHERE c.id_film = $id";
 
             $acteursFilm = $dao->executerRequete($sql2);  
-            
+
+                        
             $sql3 = "SELECT g.nom_genre, id_genre
                      FROM genre g            
                      ";            
    
-            $genres = $dao->executerRequete($sql3);
+            $genres = $dao->executerRequete($sql3); // Sort la liste de tous les genres pour afficher une selection     
+            
+            $sql4 = "SELECT p.prenom, p.nom, p.id_personne, r.id_realisateur
+                    FROM personne p
+                    INNER JOIN realisateur r
+                    ON p.id_personne = r.id_personne;
+                    ";            
+                    
+            $realisators = $dao->executerRequete($sql4); // Sort la liste des réals pour afficher une selection
 
             require "views/movie/formEditMovie.php"; // on appelle currMovieEditing.php qui affiche tous les formulaires nécessaires à la modif d'un film.
         }
@@ -172,7 +186,7 @@
 
             // récupération des infos de $post puis injection SQL 
             
-            $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+            $id= filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT); // id_film
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
             $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
@@ -184,14 +198,15 @@
             $dao = new DAO();
 
             $sql="UPDATE film f
-                    SET f.titre_film = '$title',
-                        f.annee_sortie = '$releaseDate',
-                        f.duree_film = '$duration',
-                        f.synopsis = '$synopsis',
-                        f.note = '$rating'
-                    WHERE f.id_film = '$id';";   
+                    SET f.titre_film = :titre_film,
+                        f.annee_sortie = :annee_sortie,
+                        f.duree_film = :duree_film,
+                        f.synopsis = :synopsis,
+                        f.note = :note,
+                        f.id_realisateur = :id_realisateur
+                    WHERE f.id_film = :id_film;";   
                 
-            $editFilm = $dao->executerRequete($sql);
+            $editFilm = $dao->executerRequete($sql, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur, ':id_film' => $id]);
 
             // faire un delete de tous les genres  puis un foreach d'ajout de genre pour faire l'update car il n'y a pas forcemnent le même nbr de genre pour un film.
 
