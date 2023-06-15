@@ -77,29 +77,23 @@
     <label for="id_genre">Choix du genre</label>
     <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
 
-            <?php foreach ($nom_genre as $index => $genre){ 
+            <?php foreach ($nom_genre as $index => $genre){                
                 
                 // Foreach qui va parcourir la liste fetch des genres déjà sélectionnés dans le film 
                 // (et vu que le fetch id_genre et nom_genre sont liés et donc égaux en terme d'écriture,
                 // je peux parcourir l'array des id_genre[] avec l'index de l'array nom_genre[] )
 
-                echo "<option selected value =".$id_genre[$index]." >".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
-
-            }
-            
-            ?>
-    
-            <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
-
-                $id_genre_fetch[] = $genre['id_genre'];
-
-                // comparer l'array id_genre_fetch avec id_genre[]
+                echo "<option selected value =".$id_genre[$index].">".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
                 
+                }          
+                
+             while ($genre = $genres->fetch()){ // permet de lister tous les genres existants
+
                 echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
 
-                // $id_genre = $genre['id_genre'];
-                }        
-            ?>
+                }   
+                     
+            ?>           
     </select>
 
     <!-- RATING -->
@@ -143,34 +137,36 @@
     <button type="submit" class="btn btn-primary my-3" name="editMovie">Valider</button>
     
     <a class='btn btn-info' href='index.php?action=formEditCasting&id=<?=$id?>'>Modifier le casting</a> <!-- Avec l'ID du film -->
+
+</form>
     
-<?php   
+    <?php   
 
-    echo "<div class ='mx-5 row'>";    
+        echo "<div class ='mx-5 row'>";    
 
-    while ($acteur = $acteursFilm->fetch()){ // Affichage de tous les acteurs pour pouvoir les delete ou les modif par la suite/
-      
-        echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>        
-                <div class='card my-3' style='width: 10rem;'>
-                    <a href='index.php?action=formEditPerson&id=".$acteur['id_personne']."'><div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
-                        <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
-                            <div class='card-body'>
-                                <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
-                                <p>Né(e) le : ".$acteur['date_naissance']."</p>  
-                                <p>Rôle : ".$acteur['nom_role']." </p>                                      
+        while ($acteur = $acteursFilm->fetch()){ // Affichage de tous les acteurs pour pouvoir les delete ou les modif par la suite/
+        
+            echo "<div class ='col-sm-3'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$acteur['id_personne']."'>        
+                    <div class='card my-3' style='width: 10rem;'>
+                        <a href='index.php?action=formEditPerson&id=".$acteur['id_personne']."'><div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
+                            <img class='card-img-top' src='".$acteur['image']."' alt='Card image cap'>
+                                <div class='card-body'>
+                                    <h6 class='card-title'>".$acteur['prenom']." ".$acteur['nom']."</h5>
+                                    <p>Né(e) le : ".$acteur['date_naissance']."</p>  
+                                    <p>Rôle : ".$acteur['nom_role']." </p>                                      
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>";
-    }
+                        </a>
+                    </div>";
+        }
 
-    echo "</div>";
-?>
+        echo "</div>";
+    ?>
 
         
-<?php   
-    $title = "Détail du film";
-    $content = ob_get_clean();
-    require "views/template.php";
-?>
+    <?php   
+        $title = "Détail du film";
+        $content = ob_get_clean();
+        require "views/template.php";
+    ?>
 
