@@ -40,18 +40,19 @@
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
             $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
+            $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
             // var_dump($_POST['id_genre[]']);
 
             $dao = new DAO();
 
-            $sql1 = "INSERT INTO film (titre_film, annee_sortie, duree_film, synopsis, note, id_realisateur)
-                     VALUES (:titre_film, :annee_sortie, :duree_film, :synopsis, :note, :id_realisateur);";  
+            $sql1 = "INSERT INTO film (titre_film, annee_sortie, duree_film, synopsis, note, affiche, id_realisateur)
+                     VALUES (:titre_film, :annee_sortie, :duree_film, :synopsis, :note, :affiche, :id_realisateur);";  
 
             $sql2 = "INSERT INTO appartenir (id_film, id_genre)
                     VALUES (:id_film, :id_genre);";            
 
-            $addMovie = $dao->executerRequete($sql1, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur]);
+            $addMovie = $dao->executerRequete($sql1, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating,':affiche' => $img_url, ':id_realisateur' => $id_realisateur]);
 
             $id_new_film = $dao->getBDD()->lastInsertId(); // récupère l'ID auto incrémenté qui s'est créé lors de l'ajout du film. On va pouvoir intéragir avec du coup.
 
@@ -194,7 +195,9 @@
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
             $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
-             
+            $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
+
+
             $dao = new DAO();
 
             $sql="UPDATE film f
@@ -203,10 +206,11 @@
                         f.duree_film = :duree_film,
                         f.synopsis = :synopsis,
                         f.note = :note,
+                        f.affiche = :affiche,
                         f.id_realisateur = :id_realisateur
                     WHERE f.id_film = :id_film;";   
                 
-            $editFilm = $dao->executerRequete($sql, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':id_realisateur' => $id_realisateur, ':id_film' => $id]);
+            $editFilm = $dao->executerRequete($sql, [':titre_film' => $title, ':annee_sortie' => $releaseDate, ':duree_film' => $duration, ':synopsis' => $synopsis, ':note' => $rating, ':affiche'=> $img_url, ':id_realisateur' => $id_realisateur, ':id_film' => $id]);
 
             // faire un delete de tous les genres  puis un foreach d'ajout de genre pour faire l'update car il n'y a pas forcemnent le même nbr de genre pour un film.
 

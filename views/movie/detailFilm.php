@@ -12,9 +12,11 @@
 
         $minuts = $detail['duree_film'] % 60; // transformation du reste de la durée en minutes grace au modulo.
 
+        // <img class='card-img-top' src='".$detail['affiche']."' alt='Card image cap'> 
+
         echo "<div class ='bg-image' style ='background-image : url(".$detail['wallpaper']."); width: auto; height: 100%; background-repeat: no-repeat; background-position: center;'>
                 <div class='container p-5'> <div class ='card'><h2>".$detail['titre_film']." <a class='btn btn-outline-info btn-sm' href='index.php?action=formEditMovie&id=".$idFilm."'>Modifier</a></h2>",             
-                    "<div class='card-body'><strong>Résumé du film :</strong> ".$detail['synopsis']."</div>       
+                    "   <div class='card-body'><strong>Résumé du film :</strong> ".$detail['synopsis']."</div>       
                         <div class ='card-body'><strong>Date de sortie :</strong> ".$detail['annee_sortie'].".</div>
                         <div class ='card-body'><strong>Note</strong> : ".$detail['note']." <img src='public//images/etoile.png'></div> 
                         <div class ='card-body'><strong>Durée :</strong> ".$hour." Heures ".$minuts." minutes.</div>

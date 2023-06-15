@@ -46,7 +46,10 @@
             ?>
     </select>
 
-   
+    <div class="form-group my-2">
+        <label for="imgUrl">Affiche de film</label>
+        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder="URL de l'image">        
+    </div>
 
     <!-- RATING -->
 

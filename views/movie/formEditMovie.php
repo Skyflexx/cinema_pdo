@@ -14,6 +14,7 @@
         $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.
         $id_genre[] = $detail['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
         $nom_genre[] = $detail['nom_genre']; 
+        $affiche = $detail['affiche']; // affiche du film
 
         // Sort les infos du real récupérés via la requête SQL de détail du film.
         $id_real = $detail['id_realisateur'];
@@ -77,24 +78,38 @@
     <label for="id_genre">Choix du genre</label>
     <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
 
-            <?php foreach ($nom_genre as $index => $genre){                
+            <?php
+            // foreach ($nom_genre as $index => $genre){                
                 
-                // Foreach qui va parcourir la liste fetch des genres déjà sélectionnés dans le film 
-                // (et vu que le fetch id_genre et nom_genre sont liés et donc égaux en terme d'écriture,
-                // je peux parcourir l'array des id_genre[] avec l'index de l'array nom_genre[] )
+            //     // Foreach qui va parcourir la liste fetch des genres déjà sélectionnés dans le film 
+            //     // (et vu que le fetch id_genre et nom_genre sont liés et donc égaux en terme d'écriture,
+            //     // je peux parcourir l'array des id_genre[] avec l'index de l'array nom_genre[] )
 
-                echo "<option selected value =".$id_genre[$index].">".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
+            //     echo "<option selected value =".$id_genre[$index].">".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
                 
-                }          
+            // }          
                 
-             while ($genre = $genres->fetch()){ // permet de lister tous les genres existants
+            while ($genre = $genres->fetch()){ // permet de lister tous les genres existants
 
-                echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
+                // echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
 
-                }   
+                // operateur ternaire : A etudier !
+                echo "<option " . (
+                    in_array($genre['id_genre'], $id_genre) // le plus souvent : contains ou includes
+                    ? "selected "
+                    : ""
+                ) . "value =".$genre['id_genre'].">".$genre['nom_genre']."</option>";
+
+            }
                      
             ?>           
     </select>
+
+    
+    <div class="form-group my-2">
+        <label for="imgUrl">Modifier l'affiche de film</label>
+        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder= <?= $affiche?>>        
+    </div>
 
     <!-- RATING -->
 
