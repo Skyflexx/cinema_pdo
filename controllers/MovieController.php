@@ -138,7 +138,7 @@
             $dao = new DAO();
 
             // On récupère toutes les infos nécessaires au pré remplissage du formulaire avec les infos actuelles du film.
-            $sqlActual = "SELECT f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film, a.id_genre, g.nom_genre
+            $sqlActual = "SELECT r.id_realisateur, p.nom, p.prenom, f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film, a.id_genre, g.nom_genre
                     FROM film f  
                     INNER JOIN realisateur r
                         ON f.id_realisateur = r.id_realisateur
@@ -223,8 +223,7 @@
             
             foreach ($id_genres as $id_genre){
 
-                $addIntoGenre = $dao->executerRequete($sql3, [':id_film' => $id, ':id_genre' => $id_genre]);
-                
+                $addIntoGenre = $dao->executerRequete($sql3, [':id_film' => $id, ':id_genre' => $id_genre]);                
             }            
 
             $this->showFilmDetails($id); // Permet de repasser au détail du film en question ce qui fait une maj instantannée.

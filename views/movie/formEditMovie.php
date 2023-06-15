@@ -12,8 +12,13 @@
         $rating = $detail['note'];
         $duration = $detail['duree_film'];
         $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.
-        $id_genre = $detail['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
-        $nom_genre = $detail['nom_genre'];     
+        $id_genre[] = $detail['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
+        $nom_genre[] = $detail['nom_genre']; 
+
+        // Sort les infos du real récupérés via la requête SQL de détail du film.
+        $id_real = $detail['id_realisateur'];
+        $nom_real = $detail['nom']; 
+        $prenom_real = $detail ['prenom'];    
     }
 
     // Les lignes de codes ci-dessous permettent de rajouter le mot "checked" à la balise radio pour pré-cocher la bonne en fct du contenu de la BDD
@@ -59,19 +64,37 @@
     <label for="id_realisateur">Choix du realisateur</label>
     <select class="form-select mb-3" name = id_realisateur aria-label="Default select example" required> <!-- selection des réalisateurs -->
 
-        <option selected value="">Realisateur</option> <!-- au dessus, required indique qu'il faut une option avec une value non nulle (ici elle est nulle donc non prise en compte) -->
+        <option selected value='<?= $id_real ?>'><?= $prenom_real." ".$nom_real ?></option> <!-- au dessus, required indique qu'il faut une option avec une value non nulle (ici elle est nulle donc non prise en compte) -->
 
         <?php while ($realisateur = $realisators->fetch()){ // Utilisatuion d'un fetch pour que les real soient dans la liste
-            echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
+
+            if ($realisateur['id_realisateur'] != $id_real) // On compare ce fetch avec celui du réalisateur déjà selectionné à la base afin d'afficher que les autres car le réal actuel est affiché juste au dessus
+                echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
             }
         ?>   
     </select>
 
     <label for="id_genre">Choix du genre</label>
     <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
+
+            <?php foreach ($nom_genre as $index => $genre){ 
+                
+                // Foreach qui va parcourir la liste fetch des genres déjà sélectionnés dans le film 
+                // (et vu que le fetch id_genre et nom_genre sont liés et donc égaux en terme d'écriture,
+                // je peux parcourir l'array des id_genre[] avec l'index de l'array nom_genre[] )
+
+                echo "<option selected value =".$id_genre[$index]." >".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
+
+            }
+            
+            ?>
     
             <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
 
+                $id_genre_fetch[] = $genre['id_genre'];
+
+                // comparer l'array id_genre_fetch avec id_genre[]
+                
                 echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
 
                 // $id_genre = $genre['id_genre'];
