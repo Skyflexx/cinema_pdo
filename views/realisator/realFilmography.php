@@ -4,22 +4,19 @@
 
 <h2 class='my-4'>Filmographie</h2>
 
-<?php 
-
-    $nomReal = "";
-
+<?php     
     echo "<ul class='list-group mx-5 my-3'>";
 
-    while ($film = $filmList->fetch()){
-        
+    while ($film = $filmList->fetch()){ // Récupération des infos de chaque film pour l'affichage en liste. On récup également le nom du real et son affiche pour la carte plus bas.       
         $nomReal = $film['prenom']." ".$film['nom']; 
         $imgReal = $film['image'];
-        echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=detailFilm&id=".$film['id_film']."'> ".$film['titre_film']." sorti en  ".$film['annee_sortie']."</a></li>";
-        
+        echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=detailFilm&id=".
+        $film['id_film']."'> ".$film['titre_film']." sorti en  ".$film['annee_sortie']."</a></li>";
     }
 
     echo "</ul>";
 
+    // Carte Bootstrap pour l'affiche du réalisateur
     echo "<div class ='col mx-auto'>
     <div class='card my-3' style='width: 10rem;'>
         <img class='card-img-top' src='".$imgReal."' alt='Card image cap'>

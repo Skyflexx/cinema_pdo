@@ -29,21 +29,21 @@
         <option selected value="">Realisateur</option> <!-- au dessus, required indique qu'il faut une option avec une value non nulle (ici elle est nulle donc non prise en compte) -->
 
         <?php while ($realisateur = $realisators->fetch()){ // Utilisatuion d'un fetch pour que les real soient dans la liste
-        echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
+            echo "<option value = ".$realisateur['id_realisateur'].">".$realisateur['prenom']." ".$realisateur['nom']."</option>"; // La value récup l'id real.
             }
         ?>   
     </select>
 
     <label for="id_genre">Choix du genre</label>
     <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
-
+    
             <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
 
-            echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
+                echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
 
-            // $id_genre = $genre['id_genre'];
-            }        
-        ?>
+                // $id_genre = $genre['id_genre'];
+                }        
+            ?>
     </select>
 
    

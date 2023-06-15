@@ -8,7 +8,6 @@
     while ($genre = $genres->fetch()){ // Affichera une liste non ordonnée des genres qui seront cliquables   
 
         echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=filmsPerGenre&id=".$genre['id_genre']."'>".$genre['nom_genre']."</a></li>";
-
     }
 
     $title = "Nos genres de films";

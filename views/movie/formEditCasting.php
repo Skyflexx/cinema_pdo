@@ -2,33 +2,33 @@
     ob_start();
 ?>
 
-
 <form action ='index.php?action=addCasting' method='post'>
 
-    <select class="form-select mb-3" name = "acteur" aria-label="Default select example">
+    <select class="form-select mb-3" name = "acteur" aria-label="Default select example" required>
 
-        <option selected>Nom acteur</option>
+        <option value = "" selected>Nom acteur</option> 
 
-            <?php while ($acteur = $acteurs->fetch()){ // cette requête SQL permet également de sortir l'ID du film puisque lié au casting.
-            
+        <?php while ($acteur = $acteurs->fetch()){ 
+        
             echo "<option value = ".$acteur['id_acteur'].">".$acteur['prenom']." ".$acteur['nom']."</option>"; // La value récup l'id real.
 
-            }?>   
+        }?>  
+
     </select>
    
-    <select class="form-select mb-3" name ="role" aria-label="Default select example">
+    <select class="form-select mb-3" name ="role" aria-label="Default select example" required>
 
-    <option selected>Selectionner le rôle</option>
+        <option value = "" selected>Selectionner le rôle</option>
 
         <?php while ($role = $roles->fetch()){ 
 
-        echo "<option value = ".$role['id_role'].">".$role['nom_role']."</option>"; // La value récup l'id real.
+            echo "<option value = ".$role['id_role'].">".$role['nom_role']."</option>"; // La value récup l'id real.
 
         }?>       
 
     </select>
 
-    <!-- Permet la récupération de l'ID film par une requête SQL dédiée afin de l'injecter dans l'input hidden qui permettra l'ajout -->
+    <!-- Permet la récupération de l'ID film par une requête SQL dédiée afin de l'injecter dans l'input hidden qui permettra l'ajout de l'id_film -->
     <?php while($currFilm = $idMovie->fetch()){
 
         $id_film = $currFilm['id_film'];
@@ -37,8 +37,7 @@
 
     <input type="hidden" name="id_film" value="<?= $id_film?>">     
 
-    <button type="submit" class="btn btn-primary my-3" name="addCasting">Ajouter</button>
-    
+    <button type="submit" class="btn btn-primary my-3" name="addCasting">Ajouter</button>    
 
 </form>
 
@@ -63,13 +62,9 @@
                     </a>
                 </div>";
     }
-
     echo "</div>";
 ?>
 
-    
-
-        
 <?php   
     $title = "Détail du film";
     $content = ob_get_clean();

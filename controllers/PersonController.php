@@ -4,6 +4,7 @@
 
     class PersonController{
 
+        // READ
         
         public function findAllActors(){ // Permet de lister les acteurs.
 
@@ -36,7 +37,6 @@
             $filmList = $dao->executerRequete($sql);
 
             require "views/realisator/realFilmography.php"; // Le fichier du buffer qui contiendra le contenu de la requête SQL
-
         }
 
         public function showActorFilmography($id){ // Permet de sortir la filmographie d'un acteur ainsi que le rôle joué.
@@ -59,10 +59,11 @@
             $filmList = $dao->executerRequete($sql);
 
             require "views/actor/actorFilmography.php"; // Le fichier appelé pour en afficher le contenu.
-
         }
 
-        public function currPersonEditing($id){ // Personne en cours d'édition. On récupère les données de la BDD pour pré-remplir tous les formulaires.
+        // UPDATE
+
+        public function formEditPerson($id){ // Personne en cours d'édition. On récupère les données de la BDD pour pré-remplir tous les formulaires.
 
             $dao = new DAO();            
 
@@ -72,8 +73,7 @@
 
             $detailsPerson = $dao->executerRequete($sql);
 
-            require "views/person/currPersonEditing.php"; // Appelle currPersonEditing.php qui affichera tous les formulaires et le bouton qui appellera editPerson() (voir ci dessous)
-
+            require "views/person/formEditPerson.php"; // Appelle currPersonEditing.php qui affichera tous les formulaires et le bouton qui appellera editPerson() (voir ci dessous)
         }
 
         public function editPerson($array){ // Fonction qui permet l'édition dans la BDD d'une personne, puis qui rappelle la fct qui affiche le détail de la personne.
@@ -100,9 +100,6 @@
             $this->showActorFilmography($id); // Permet de repasser au détail de la personne en question ce qui fait une maj instantanée.
 
             // ATTENTION POUR LA SUITE IL Y AURA UN CONFLIT AVEC LA CLASSE REALISATEUR. il faudrait faire un $this->showRealFilmography en cas de réalisateur.
-
-        }
-        
+        }        
     }
-
 ?>
