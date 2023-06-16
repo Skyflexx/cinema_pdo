@@ -47,7 +47,7 @@
 
 <!-- Différents formulaires en méthode post pour la modif d'un film -->
 
-<form action = 'index.php?action=editMovie' method='post'> 
+<form action = 'index.php?action=editMovie' method='post' enctype="multipart/form-data"> 
     <div class="form-group my-1">
         <label for="title">Titre</label>
         <textarea class="form-control" aria-label="With textarea" name="title" required><?= $title ?></textarea>                    
@@ -110,11 +110,15 @@
     
     <!-- https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png -->
     
-    <!-- (empty($affiche) ? "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png" : "$affiche") -->
+    <!-- (empty($affiche) ? "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png" : "$affiche") -->    
     
-    <div class="form-group my-2">
+    <div class="form-group border my-2">
         <label for="imgUrl">Modifier l'affiche de film</label>
-        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" value= <?= $affiche ?>>        
+        <input type="text" class="form-control mb-3" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" value= <?= $affiche ?>> <!-- Faille ici à cause de la visibilité de l'arborescence des fichiers lors d'un upload-->
+
+        <p>Ou chargez une affiche depuis votre ordinateur :</p>
+        <label for="imgUpload">Selectionner une image:</label>
+        <input type="file" class ="pb-3" name="imgToUpload" id="imgToUpload">          
     </div>
 
     <!-- RATING -->
