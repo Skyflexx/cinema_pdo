@@ -43,11 +43,23 @@
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
             // Partie upload de l'image //
-            $currentDirectory = getcwd(); // ressort c: laragon ... cinema_pdo
-            $target_folder = "\public\images";
-            $target_file = $currentDirectory . $target_folder . basename($_FILES['imgToUpload']['name']);
 
-            print_r($currentDirectory);
+            // Le but est d'utiliser la superglobale $_FILES. Elle contiendra l'image, puis il faudra la move dans le dossier voulu.
+            
+            $fileExtensionsAllowed = ['jpeg','jpg','png']; // On précise les formats acceptés
+            $currentDirectory = getcwd(); // ressort c: laragon ... cinema_pdo
+            $target_folder = "/public/images/";
+            $fileName = $_FILES['imgToUpload']['name'];
+            $fileTmp = $_FILES['imgToUpload']['tmp_name']; // dossier temporaire dans lequel est stocké le fichier dans un premier temps
+            $target_file = $currentDirectory . $target_folder . basename($_FILES['imgToUpload']['name']);
+            
+            $didUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
+
+            // if (! in_array($fileExtension, $fileExtensionsAllowed)) {
+            //     echo "L'extension de ce fichier n'est pas acceptée. Merci de charger un fichier au format .jpg, .jpeg ou .png";
+            // } else 
+
+            print_r($_FILES); 
 
 
 
