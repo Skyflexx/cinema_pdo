@@ -226,9 +226,7 @@
                 $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
             
             } else if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; 
-             // Si pas de fichier dans $_FILES et si l'utilisateur n'a pas rentré d'url, alors on met cette image par défaut.
-
-           
+             // Si pas de fichier dans $_FILES et si l'utilisateur n'a pas rentré d'url, alors on met cette image par défaut.           
 
             $dao = new DAO();
 
@@ -324,9 +322,23 @@
 
             DELETE FROM appartenir a
 
-            WHERE a.id_film = $id;";
+            WHERE a.id_film = $id;";            
 
             $deleteMovie = $dao->executerRequete($sql1); 
+
+            $sqlFilesToDelete = "SELECT f.affiche FROM film f where f.id_film = :id_film;"; // permet la récup du chemin du fichier.
+
+            $filesPath = $dao->executerRequete($sqlFilesToDelete, [':id_film' => $id]);
+
+            while ($file = $filesPath->fetch()){ 
+                
+                    $fileToDelete = $file['affiche'];
+
+                }
+
+            unlink($fileToDelete);
+
+
 
             $this->findAllFilms(); // Appelle la fonction findAllFilms pour retourner à la liste des films
         }
