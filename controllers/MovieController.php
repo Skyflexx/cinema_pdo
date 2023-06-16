@@ -332,10 +332,8 @@
 
             $filesPath = $dao->executerRequete($sqlFilesToDelete, [':id_film' => $id]);
 
-            while ($file = $filesPath->fetch()){ 
-                
+            while ($file = $filesPath->fetch()){                 
                     $fileToDelete = $file['affiche'];
-
                 }
             
             if (file_exists($fileToDelete)) unlink($fileToDelete);    // Si il existe un fichier ayant pour chemin l'adresse qu'on récupère dans la BDD, alors on le supprime. Permet d'éviter un warning.         
