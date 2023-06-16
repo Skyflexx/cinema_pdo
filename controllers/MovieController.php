@@ -44,6 +44,8 @@
 
             // var_dump($_POST['id_genre[]']);
 
+            if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png";
+
             $dao = new DAO();
 
             $sql1 = "INSERT INTO film (titre_film, annee_sortie, duree_film, synopsis, note, affiche, id_realisateur)
@@ -197,6 +199,7 @@
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
+            if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; // si pas d'url de rentré, on met cette image par défaut.
 
             $dao = new DAO();
 

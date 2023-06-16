@@ -108,11 +108,13 @@
                     
         ?>           
     
-
+    <!-- https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png -->
+    
+    <!-- (empty($affiche) ? "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png" : "$affiche") -->
     
     <div class="form-group my-2">
         <label for="imgUrl">Modifier l'affiche de film</label>
-        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder= <?= $affiche?>>        
+        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" value= <?= $affiche ?>>        
     </div>
 
     <!-- RATING -->
