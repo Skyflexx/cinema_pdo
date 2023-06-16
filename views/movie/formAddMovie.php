@@ -34,26 +34,25 @@
         ?>   
     </select>
 
-    <label for="id_genre">Choix du genre</label>
-    
-    
-            <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
+    <label for="id_genre">Choix du/des genre(s)</label>
 
-                echo "<input name = 'id_genre[]' class ='form-check-input mx-3' type='checkbox' value =".$genre['id_genre'].">".$genre['nom_genre']; // La value permet de récupérer l'ID du genre.
+    <div class ="border mx-1">    
+        <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
 
-                // $id_genre = $genre['id_genre'];
-                }        
-            ?>
-    
+            echo "<input name = 'id_genre[]' class ='form-check-input mx-3' type='checkbox' value =".$genre['id_genre'].">".$genre['nom_genre']; // La value permet de récupérer l'ID du genre.
 
-    <div class="form-group my-2">
+            // $id_genre = $genre['id_genre'];
+            }        
+        ?>
+    </div>
+
+    <div class="form-group border my-2">
         <label for="imgUrl">Affiche de film</label>
         <input type="text" class="form-control mb-3" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder="Ajoutez l'url d'une image déjà existante"> 
 
         <p>Ou chargez une affiche depuis votre ordinateur :</p>
         <label for="imgUpload">Selectionner une image:</label>
-        <input type="file"  name="imgToUpload" id="imgToUpload">
-          
+        <input type="file" class ="pb-3" name="imgToUpload" id="imgToUpload">          
     </div>
 
     <!-- RATING -->

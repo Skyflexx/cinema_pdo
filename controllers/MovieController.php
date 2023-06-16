@@ -42,33 +42,25 @@
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
-            // Partie upload de l'image //
+            // Partie upload de l'image //           
 
             // Le but est d'utiliser la superglobale $_FILES. Elle contiendra l'image, puis il faudra la move dans le dossier voulu.
+            // Note : il faudra faire en sorte de delete l'image si on supprime le film.
+
+            if (file_exists($_FILES['imgToUpload']['tmp_name'])){ // Cette condition vérifie l'existence d'un fichier dans le cache de $_FILES 
+
+                $fileExtensionsAllowed = ['jpeg','jpg','png']; // pour plus tard pour la sécurité
+                $currentDirectory = getcwd().'\\'; // ressort c: laragon ... cinema_pdo afin d'avoir un chemin d'accès complet pour le move du fichier (important)
+                $target_folder = 'public\images\\'; // Le dossier cible. currentDirectory et target folder sont séparés pour un correct affichage d'un url dans l'HTML
+                $fileName = $_FILES['imgToUpload']['name']; 
+                $fileTmp = $_FILES['imgToUpload']['tmp_name']; // dossier temporaire dans lequel est stocké le fichier dans un premier temps
+                $target_file = $currentDirectory. $target_folder . basename($_FILES['imgToUpload']['name']);                
+                $endUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
+                $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
             
-            $fileExtensionsAllowed = ['jpeg','jpg','png']; // On précise les formats acceptés
-            $currentDirectory = getcwd(); // ressort c: laragon ... cinema_pdo
-            $target_folder = "/public/images/";
-            $fileName = $_FILES['imgToUpload']['name'];
-            $fileTmp = $_FILES['imgToUpload']['tmp_name']; // dossier temporaire dans lequel est stocké le fichier dans un premier temps
-            $target_file = $currentDirectory . $target_folder . basename($_FILES['imgToUpload']['name']);
+            } else if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; 
+             // Si pas de fichier dans $_FILES et si l'utilisateur n'a pas rentré d'url, alors on met cette image par défaut.
             
-            $didUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
-
-            // if (! in_array($fileExtension, $fileExtensionsAllowed)) {
-            //     echo "L'extension de ce fichier n'est pas acceptée. Merci de charger un fichier au format .jpg, .jpeg ou .png";
-            // } else 
-
-            print_r($_FILES); 
-
-
-
-            //
-
-            // var_dump($_POST['id_genre[]']);
-
-            if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png";
-
             $dao = new DAO();
 
             $sql1 = "INSERT INTO film (titre_film, annee_sortie, duree_film, synopsis, note, affiche, id_realisateur)
