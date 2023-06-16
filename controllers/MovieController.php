@@ -324,7 +324,9 @@
 
             WHERE a.id_film = $id;";            
 
-            $deleteMovie = $dao->executerRequete($sql1); 
+            
+
+            // SUPPRESSION D'UNE IMAGE UPLOADEE DANS LA BDD
 
             $sqlFilesToDelete = "SELECT f.affiche FROM film f where f.id_film = :id_film;"; // permet la récup du chemin du fichier.
 
@@ -335,10 +337,12 @@
                     $fileToDelete = $file['affiche'];
 
                 }
+            
+            if (file_exists($fileToDelete)) unlink($fileToDelete);    // Si il existe un fichier ayant pour chemin l'adresse qu'on récupère dans la BDD, alors on le supprime. Permet d'éviter un warning.         
 
-            unlink($fileToDelete);
+            $deleteMovie = $dao->executerRequete($sql1); // Suppression de la table dans la BDD.
 
-
+            ///////////////////////////////////
 
             $this->findAllFilms(); // Appelle la fonction findAllFilms pour retourner à la liste des films
         }
