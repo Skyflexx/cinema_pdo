@@ -6,7 +6,7 @@
 
 <!-- Tout est en required comme ça pas de risque d'erreur dans la bdd-->
 
-<form action = "index.php?action=addMovie" method='post'>
+<form action = "index.php?action=addMovie" method='post' enctype="multipart/form-data">
     <div class="form-group my-1">
         <label for="title">Titre</label>
         <textarea class="form-control" aria-label="With textarea" name="title" placeholder="Titre du film" required></textarea>                    
@@ -35,20 +35,25 @@
     </select>
 
     <label for="id_genre">Choix du genre</label>
-    <select class="form-select" name = "id_genre[]" multiple aria-label="Default select example" required> <!-- selection des réalisateurs -->
+    
     
             <?php while ($genre = $genres->fetch()){ // Utilisation d'un fetch pour que les real soient dans la liste
 
-                echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
+                echo "<input name = 'id_genre[]' class ='form-check-input mx-3' type='checkbox' value =".$genre['id_genre'].">".$genre['nom_genre']; // La value permet de récupérer l'ID du genre.
 
                 // $id_genre = $genre['id_genre'];
                 }        
             ?>
-    </select>
+    
 
     <div class="form-group my-2">
         <label for="imgUrl">Affiche de film</label>
-        <input type="text" class="form-control" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder="URL de l'image">        
+        <input type="text" class="form-control mb-3" id="imgUrl" name="imgUrl" aria-describedby="Add an image by Url" placeholder="Ajoutez l'url d'une image déjà existante"> 
+
+        <p>Ou chargez une affiche depuis votre ordinateur :</p>
+        <label for="imgUpload">Selectionner une image:</label>
+        <input type="file"  name="imgToUpload" id="imgToUpload">
+          
     </div>
 
     <!-- RATING -->

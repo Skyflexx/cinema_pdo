@@ -42,6 +42,17 @@
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
+            // Partie upload de l'image //
+            $currentDirectory = getcwd(); // ressort c: laragon ... cinema_pdo
+            $target_folder = "\public\images";
+            $target_file = $currentDirectory . $target_folder . basename($_FILES['imgToUpload']['name']);
+
+            print_r($currentDirectory);
+
+
+
+            //
+
             // var_dump($_POST['id_genre[]']);
 
             if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png";
