@@ -12,8 +12,7 @@
         $rating = $detail['note'];
         $duration = $detail['duree_film'];
         $id = $detail['id_film']; // sera récupéré puis mis dans un input pour l'envoyer dans un POST.
-        $id_genre[] = $detail['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
-        $nom_genre[] = $detail['nom_genre']; 
+       
         $affiche = $detail['affiche']; // affiche du film
 
         // Sort les infos du real récupérés via la requête SQL de détail du film.
@@ -21,7 +20,17 @@
         $nom_real = $detail['nom']; 
         $prenom_real = $detail ['prenom'];    
     }
+   
+    $id_genre = array(""); // défini par défaut car si on delete un genre, un film n'ayant plus de genre causera des erreurs car id_genre ne sera pas défini dans le fetch qui est null.
 
+    while ($currGenre = $currGenres->fetch()){
+
+        $id_genre[] =  $currGenre['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
+        $nom_genre[] = $currGenre['nom_genre']; 
+
+    }
+
+  
     // Les lignes de codes ci-dessous permettent de rajouter le mot "checked" à la balise radio pour pré-cocher la bonne en fct du contenu de la BDD*
     // On pourra par la suite factoriser ce code via du ternaire plutôt
 
@@ -98,7 +107,7 @@
 
                 // operateur ternaire : A etudier !
                 echo "<input class ='form-check-input mx-3' name = 'id_genre[]' type ='checkbox' " . (
-                    in_array($genre['id_genre'], $id_genre) // le plus souvent : contains ou includes
+                    in_array($genre['id_genre'], $id_genre) // 20 correspond au genre "non défini" Coché par défaut.
                     ? "checked "
                     : ""
                 ) . "value =".$genre['id_genre'].">".$genre['nom_genre']."";

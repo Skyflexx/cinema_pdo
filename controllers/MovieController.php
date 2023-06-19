@@ -156,19 +156,23 @@
             $dao = new DAO();
 
             // On récupère toutes les infos nécessaires au pré remplissage du formulaire avec les infos actuelles du film.
-            $sqlActual = "SELECT r.id_realisateur, p.nom, p.prenom, f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film, a.id_genre, g.nom_genre
+            $sqlActual = "SELECT r.id_realisateur, p.nom, p.prenom, f.id_film, f.titre_film, f.synopsis, f.affiche, f.wallpaper, f.annee_sortie, p.nom, p.prenom, f.id_realisateur, f.note, f.duree_film
                     FROM film f  
                     INNER JOIN realisateur r
                         ON f.id_realisateur = r.id_realisateur
                     INNER JOIN personne p
-                        ON r.id_personne = p.id_personne
-                    INNER JOIN appartenir a
-                        ON f.id_film = a.id_film
-                    INNER JOIN genre g
-                        ON a.id_genre = g.id_genre
-                    WHERE f.id_film = $id";           
+                        ON r.id_personne = p.id_personne                    
+                    WHERE f.id_film = $id"; 
+                    
+            $sqlCurrGenre = "SELECT g.id_genre, g.nom_genre
+                        FROM genre g
+                        INNER JOIN appartenir a
+                        ON g.id_genre = a.id_genre
+                        WHERE a.id_film = $id";
 
-            $detailFilm = $dao->executerRequete($sqlActual);
+            $detailFilm = $dao->executerRequete($sqlActual); // détails actuels du film
+
+            $currGenres = $dao->executerRequete($sqlCurrGenre); // récupération du genre à part car une requête globale générerait un resultat NULL si on delete un genre (et qu'il n'y a plus rien dans appartenir a)
 
             $sql2 = "SELECT p.prenom, p.nom, p.sexe, p.date_naissance, p.image, r.nom_role, p.id_personne, c.id_acteur
                     FROM personne p
