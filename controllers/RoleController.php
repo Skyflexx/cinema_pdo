@@ -8,7 +8,7 @@
 
             $dao = new DAO();           
 
-            require "views/genre/formAddRole.php"; 
+            require "views/role/formAddRole.php"; 
         }
 
         public function addRole($array){ // Ajout du rôle. array contient le contenu de $_POST
@@ -33,18 +33,18 @@
 
             $sql = "SELECT id_role, nom_role FROM role";
 
-            $genres = $dao->executerRequete($sql); // méthode exetuteRequete dans la classe DAO qui permet de faire une request SQL à la BDD.
+            $roles = $dao->executerRequete($sql); // méthode exetuteRequete dans la classe DAO qui permet de faire une request SQL à la BDD.
 
             //$genres contiendra un tableau avec des rows qui contiendra chaque genre.
 
-            require "views/genre/listRoles.php";
+            require "views/role/listRoles.php";
         }     
         
         public function showActorsPerRole($id_role){ // Permet de lister les films pour un genre donné en paramètres.
 
             $dao = new DAO();
 
-            $sql = "SELECT p.id_personne, p.nom, p.prenom
+            $sql = "SELECT p.id_personne, p.nom, p.prenom, f.titre_film, DATE_FORMAT(f.annee_sortie, '%Y') as annee_sortie
                     FROM personne p
                     INNER JOIN acteur a
                     ON p.id_personne = a.id_personne
@@ -52,11 +52,13 @@
                     ON a.id_acteur = c.id_acteur
                     INNER JOIN role r
                     ON c.id_role = r.id_role
+                    INNER JOIN film f
+                    ON c.id_film = f.id_film
                     WHERE r.id_role = :id_role";           
 
             $actorsListPerRole = $dao->executerRequete($sql, [':id_role' => $id_role]);            
 
-            require "views/genre/listActorsPerRole.php";
+            require "views/role/listActorsPerRole.php";
         }
 
 

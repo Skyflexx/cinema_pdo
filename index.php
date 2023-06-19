@@ -9,6 +9,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
     require_once "controllers/PersonController.php";
     require_once "controllers/MovieController.php";
     require_once "controllers/GenreController.php";
+    require_once "controllers/RoleController.php";
 
     // On peut utiliser pour tout ça un autoloader également.
     // On peut utiliser include qui fera le même travail que require. La diff se fait en cas d'absence de fichier. Include sortira un warning et require une error.
@@ -18,6 +19,7 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
     $personCtrl = new PersonController();
     $filmCtrl = new MovieController();
     $genreCtrl = new GenreController();
+    $roleCtrl = new RoleController();
 
     // L'index va intercepter la request HTTP. Va orienter vers le bon controleur et la bonne méthode.
     // ex : index.php?ctrl=movieCtrl&action=listFilms
@@ -64,8 +66,8 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'editGenre' : $genreCtrl->editGenre($_POST); break;
 
             // ROLES
-            case 'listRoles': $roleCtrl->finAllRoles(); break;
-            case 'listActorsPerRole': $roleCtrl->showActorsPerRole($id); break;
+            case 'listRoles': $roleCtrl->findAllRoles(); break;
+            case 'actorsPerRole': $roleCtrl->showActorsPerRole($id); break;
             case 'addRole': $roleCtrl->formAddRole(); break;
             
             // DEFAULT 
