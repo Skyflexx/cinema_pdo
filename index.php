@@ -62,6 +62,11 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'deleteGenre' : $genreCtrl->deleteGenre($id); break;
             case 'formEditGenre' : $genreCtrl->formEditGenre($id); break;
             case 'editGenre' : $genreCtrl->editGenre($_POST); break;
+
+            // ROLES
+            case 'listRoles': $roleCtrl->finAllRoles(); break;
+            case 'listActorsPerRole': $roleCtrl->showActorsPerRole($id); break;
+            case 'addRole': $roleCtrl->formAddRole(); break;
             
             // DEFAULT 
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous

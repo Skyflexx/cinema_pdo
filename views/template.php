@@ -28,7 +28,7 @@
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listFilms">Films</a></li>
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listActors">Acteurs</a></li>
                 <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listGenres">Genres</a></li>
-                <!-- <li class="nav-item active"><a class="nav-link active" href="#">Home</a></li> -->
+                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listRoles">Rôles</a></li>
             </ul>
     </nav>
 
