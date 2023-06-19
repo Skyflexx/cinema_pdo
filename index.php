@@ -66,9 +66,13 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'editGenre' : $genreCtrl->editGenre($_POST); break;
 
             // ROLES
+            case 'btnAddRole' : $roleCtrl->formAddRole(); break;
             case 'listRoles': $roleCtrl->findAllRoles(); break;
             case 'actorsPerRole': $roleCtrl->showActorsPerRole($id); break;
-            case 'addRole': $roleCtrl->formAddRole(); break;
+            case 'addRole': $roleCtrl->addRole($_POST); break;
+            case 'formEditRole' : $roleCtrl->formEditRole($id); break;
+            case 'editRole' : $roleCtrl->editRole($_POST); break;
+            case 'deleteRole' : $roleCtrl->deleteRole($id); break;
             
             // DEFAULT 
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous
