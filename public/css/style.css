@@ -1,6 +1,6 @@
 header{
     display : flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #frog{
@@ -9,8 +9,8 @@ header{
 }
 
 #camera{
-    width : 100px;
-    height : 100px;
+    width : 120px;
+    height : auto;
 }
 
 main {    

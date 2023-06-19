@@ -60,6 +60,8 @@ Dans ce fichier on stocke nos données dans des variables qui sont présentes da
             case 'btnAddGenre' : $genreCtrl->formAddGenre(); break;
             case 'addGenre' : $genreCtrl->addGenre($_POST); break;
             case 'deleteGenre' : $genreCtrl->deleteGenre($id); break;
+            case 'formEditGenre' : $genreCtrl->formEditGenre($id); break;
+            case 'editGenre' : $genreCtrl->editGenre($_POST); break;
             
             // DEFAULT 
             //case 'homePage' : $homeCtrl->homePage(); break; // Voir ligne du dessous

@@ -62,8 +62,40 @@
 
             require "views/genre/filmsPerGenre.php";
         }
+
+        // UPDATE
+
+        public function formEditGenre($id){
+            $dao = new DAO();
+
+            $sql = "SELECT g.id_genre, g.nom_genre
+                    FROM genre g
+                    WHERE g.id_genre = :id_genre";
+
+            $currentGenre = $dao->executerRequete($sql, [':id_genre' => $id]);
+
+            require "views/genre/formEditGenre.php";            
+        }
+
+        public function editGenre($post){
+
+            $id_genre= filter_input(INPUT_POST, "id_genre", FILTER_SANITIZE_NUMBER_INT); 
+            $nom_genre = filter_input(INPUT_POST, "nom_genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+
+            $dao = new DAO();
+
+            $sql = "UPDATE genre g
+                    SET g.nom_genre = :nom_genre
+                    WHERE g.id_genre = :id_genre";
+            
+            $editGenre = $dao->executerRequete($sql, [':id_genre' => $id_genre, ':nom_genre' => $nom_genre]);
+
+            $this->showFilmsPerGenre($id_genre);
+        }
         
         // DELETE
+
+        // PROBLEME : Si on delete un genre, il n'y a plus rien dans la table appartenir et donc ça créé des erreurs SQL à l'édition d'un film.
 
         public function deleteGenre($id){
             

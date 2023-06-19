@@ -7,7 +7,11 @@
    };
 ?>
 
-<h2>Liste des films du genre <span class='text-info'><?= $nom ?></span> <a class='btn btn-danger btn-sm' href='index.php?action=deleteGenre&id=<?= $id?>'>Supprimer le genre</a></h2>
+<h2 class="mt-3">Liste des films du genre <span class='text-info'><?= $nom ?></span> <a class='btn btn-warning btn-sm' href='index.php?action=formEditGenre&id=<?= $id?>'>Modifier le genre</a> 
+
+<a class='btn btn-danger btn-sm' href='index.php?action=deleteGenre&id=<?= $id?>'>Supprimer le genre</a> 
+
+</h2>
 
 <?php 
     echo "<div class='container p-5'>
