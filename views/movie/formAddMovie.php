@@ -87,7 +87,7 @@
 
     <div class="form-group my-2">
         <label for="duration">Durée en minutes</label>
-        <input type="text" class="form-control" id="duration" name="duration" placeholder="Durée en minutes" required>
+        <input type="number" class="form-control" id="duration" name="duration" placeholder="Durée en minutes" required>
     </div>      
            
     <button type="submit" class="btn btn-primary my-3" name="addMovie">Valider</button>

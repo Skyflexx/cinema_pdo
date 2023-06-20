@@ -145,7 +145,7 @@
 
     <div class="form-group my-2">
         <label for="duration">Durée en minutes</label>
-        <input type="text" class="form-control" id="duration" name="duration" value="<?= $duration ?>" required>
+        <input type="number" class="form-control" id="duration" name="duration" value="<?= $duration ?>" required>
     </div>   
     
     <input type="hidden" name="id" value="<?= $id ?>"> <!-- stockage dans $post de l'id du film par le biais d'un input hidden -->      
