@@ -26,7 +26,7 @@
                         <div class ='card-body'><strong>Realisateur :</strong> ".$detail['prenom']." ".$detail['nom']." 
                     <a class='btn btn-outline-info btn-sm' href='index.php?action=filmographie&id=".$detail['id_realisateur']."'>Voir la filmographie</a></div>                          
                 </div>";   
-                var_dump(exif_imagetype($detail['affiche'])); 
+                // var_dump(exif_imagetype($detail['affiche'])); 
     }
 
     

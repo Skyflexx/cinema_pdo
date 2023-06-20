@@ -62,9 +62,19 @@
 
                     $endUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
 
-                }
+                    $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
+
+                } else {
+                    
+                    echo '<script>alert("Votre image doit être au format .JPG ou .PNG !")</script>'; // msg alerte popup si le format n'est pas ok.
+
+                    $this->formAddMovie(); // On redirige vers formAddMovie. Sauf que l'utilisateur devra recommencer.
+
+                    exit; // On quitte tout le script pour ne pas alimenter la BDD avec le reste des données.                   
+                
+                
+                }// Si pas d'image upload à cause du format, alors on met l'img par défaut.
                
-                $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
             
             } else if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; 
              // Si pas de fichier dans $_FILES et si l'utilisateur n'a pas rentré d'url, alors on met cette image par défaut.
