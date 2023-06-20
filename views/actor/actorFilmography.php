@@ -25,7 +25,7 @@
     // Carte Bootstrap qui affichera la fiche de l'acteur et le bouton pour pouvoir la modifier
     echo "<div class ='col mx-auto'>
     <div class='card my-3' style='width: 10rem;'>
-    <a href='index.php?action=currPersonEditing&id=".$idPerson."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
+    <a href='index.php?action=formEditPerson&id=".$idPerson."'> <div id='edit-btn'><i class='bi bi-gear-fill'></i></div></a>
         <img class='card-img-top' src='".$imgActor."' alt='Card image cap'>
             <div class='card-body'>
                 <h6 class='card-title'>".$nomActor."</h5> 
