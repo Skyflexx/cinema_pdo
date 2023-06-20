@@ -54,8 +54,23 @@
                 $target_folder = 'public\images\\'; // Le dossier cible. currentDirectory et target folder sont séparés pour un correct affichage d'un url dans l'HTML
                 $fileName = $_FILES['imgToUpload']['name']; 
                 $fileTmp = $_FILES['imgToUpload']['tmp_name']; // dossier temporaire dans lequel est stocké le fichier dans un premier temps
-                $target_file = $currentDirectory. $target_folder . basename($_FILES['imgToUpload']['name']);                
-                $endUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
+                $target_file = $currentDirectory. $target_folder . basename($_FILES['imgToUpload']['name']); 
+                
+                if (filesize($_FILES['imgToUpload']['size'] < 51200 )) {
+
+                    if (exif_imagetype($fileName) == 'IMAGETYPE_WEBP') {
+
+                       $endUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
+
+
+                    }
+
+
+
+                }
+                
+               
+               
                 $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
             
             } else if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; 
@@ -147,9 +162,7 @@
 
         }
 
-
         // UPDATE
-
 
         public function formEditMovie($id){ // formulaire d'édition d'un film.
 
