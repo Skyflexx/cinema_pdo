@@ -1,10 +1,9 @@
 <?php 
-    ob_start(); //demarre la temporisation de sortie. dans la memoire tampon. 
-    
+    ob_start(); //demarre la temporisation de sortie. dans la memoire tampon.     
     // CECI EST LA PAGE D'ACCUEIL SANS CONTENU PARTICULIER
 ?>
 
-    <img src="public/images/cinema.jpg"> 
+<img src="public/images/cinema.jpg"> 
 
 <?php 
     $title = "SkyCine";

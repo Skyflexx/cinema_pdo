@@ -11,7 +11,6 @@
         <?php while ($acteur = $acteurs->fetch()){ 
         
             echo "<option value = ".$acteur['id_acteur'].">".$acteur['prenom']." ".$acteur['nom']."</option>"; // La value récup l'id real.
-
         }?>  
 
     </select>
@@ -23,7 +22,6 @@
         <?php while ($role = $roles->fetch()){ 
 
             echo "<option value = ".$role['id_role'].">".$role['nom_role']."</option>"; // La value récup l'id real.
-
         }?>       
 
     </select>
@@ -32,7 +30,6 @@
     <?php while($currFilm = $idMovie->fetch()){
 
         $id_film = $currFilm['id_film'];
-
     }?>
 
     <input type="hidden" name="id_film" value="<?= $id_film?>">     
@@ -40,7 +37,6 @@
     <button type="submit" class="btn btn-primary my-3" name="addCasting">Ajouter</button>    
 
 </form>
-
 
 <?php   
 

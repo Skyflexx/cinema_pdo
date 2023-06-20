@@ -23,13 +23,13 @@
     </header>
 
     <nav class="navbar navbar-expand border-bottom border-dark d-flex justify-content-center">      
-            <ul class = "navbar-nav mr-auto">
-                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=homePage">Accueil</a></li>
-                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listFilms">Films</a></li>
-                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listActors">Acteurs</a></li>
-                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listGenres">Genres</a></li>
-                <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listRoles">Rôles</a></li>
-            </ul>
+        <ul class = "navbar-nav mr-auto">
+            <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=homePage">Accueil</a></li>
+            <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listFilms">Films</a></li>
+            <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listActors">Acteurs</a></li>
+            <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listGenres">Genres</a></li>
+            <li class="nav-item active"><a class="btn btn-dark mx-1" href="index.php?action=listRoles">Rôles</a></li>
+        </ul>
     </nav>
 
     <main>

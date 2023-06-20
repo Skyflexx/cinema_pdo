@@ -28,7 +28,6 @@
             $genres = $dao->executerRequete($sql2);
 
             require "views/movie/formAddMovie.php";
-
         }
 
         public function addMovie($array){
@@ -62,7 +61,7 @@
 
                     $endUpload = move_uploaded_file($fileTmp, $target_file); // Permet le move du fichier depuis le fichier tmp de $_FILES jusqu'au dossier voulu. Attention il faudra mettre de la sécurité avant !
 
-                    $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); ; // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
+                    $img_url = $target_folder . basename($_FILES['imgToUpload']['name']); // Reassignation de la variable img_url car c'est elle qui est utilisée pour aller en BDD. Par défaut $img_url est filtrée dans tous les cas en haut.
 
                 } else {
                     
@@ -70,10 +69,8 @@
 
                     $this->formAddMovie(); // On redirige vers formAddMovie. Sauf que l'utilisateur devra recommencer.
 
-                    exit; // On quitte tout le script pour ne pas alimenter la BDD avec le reste des données.                   
-                
-                
-                }// Si pas d'image upload à cause du format, alors on met l'img par défaut.
+                    exit; // On quitte tout le script pour ne pas alimenter la BDD avec le reste des données.
+                }
                
             
             } else if (empty($img_url)) $img_url = "https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png"; 
@@ -95,12 +92,10 @@
             
             foreach ($id_genres as $id_genre){
 
-                $addIntoGenre = $dao->executerRequete($sql2, [':id_film' => $id_new_film, ':id_genre' => $id_genre]);
-                
+                $addIntoGenre = $dao->executerRequete($sql2, [':id_film' => $id_new_film, ':id_genre' => $id_genre]);                
             }              
          
             $this->showFilmDetails($id_new_film);
-
         }
 
         public function addCasting($array){ // contient le $_POST 
@@ -120,9 +115,7 @@
             $this->formEditCasting($id_film);
         }
 
-
         // READ
-
 
         public function findAllFilms(){ // Permet de sortir tous les films.
 
@@ -162,7 +155,6 @@
             $acteursFilm = $dao->executerRequete($sql2);
 
             require "views/movie/detailFilm.php";
-
         }
 
         // UPDATE
@@ -200,8 +192,7 @@
                         ON c.id_role = r.id_role
                     WHERE c.id_film = $id";
 
-            $acteursFilm = $dao->executerRequete($sql2);  
-
+            $acteursFilm = $dao->executerRequete($sql2);
                         
             $sql3 = "SELECT g.nom_genre, id_genre
                      FROM genre g            
@@ -233,7 +224,7 @@
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
 
-               // EN CAS DE SUPPRESSION DE GENRE ET QU'UN FILM N'A PLUS DE GENRE
+            // EN CAS DE SUPPRESSION DE GENRE ET QU'UN FILM N'A PLUS DE GENRE
             if (isset($array['id_genre'])){ // si ce paramètre existe, càd qu'il y a des genres de cochés.
 
                 $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
@@ -241,7 +232,6 @@
             } else {
 
                 $id_genres[] = 1; // Sinon par défaut ce sera le genre 1. 
-
             }
 
             if (file_exists($_FILES['imgToUpload']['tmp_name'])){ // Cette condition vérifie l'existence d'un fichier dans le cache de $_FILES 
@@ -277,8 +267,7 @@
             $sql2 = "DELETE FROM appartenir
                     WHERE id_film = :id_film";            
 
-            $deleteFromAppartenir = $dao->executerRequete($sql2, [':id_film' => $id]);              
-                
+            $deleteFromAppartenir = $dao->executerRequete($sql2, [':id_film' => $id]);
 
             $sql3 = "INSERT INTO appartenir (id_film, id_genre)
             VALUES (:id_film, :id_genre);"; 
@@ -302,7 +291,6 @@
                     FROM film f
                     WHERE f.id_film = $id";                    
             $idMovie = $dao->executerRequete($sql1); 
-
               
             // permet la selection dans une liste des acteurs
             $sql2 = "SELECT p.id_personne, p.nom, p.prenom, a.id_acteur
@@ -331,10 +319,8 @@
 
             require "views/movie/formEditCasting.php";
         }
-
        
-        // DELETE
-        
+        // DELETE        
 
         public function deleteMovie($id){ // Supprime le film ainsi que son casting et son appartenance à un genre.
             
@@ -352,9 +338,7 @@
 
             DELETE FROM appartenir a
 
-            WHERE a.id_film = $id;";            
-
-            
+            WHERE a.id_film = $id;"; 
 
             // SUPPRESSION D'UNE IMAGE UPLOADEE DANS LA BDD
 

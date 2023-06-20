@@ -10,7 +10,6 @@
     while ($actor = $actors->fetch()){    // Affiche l'acteur dans une liste non ordonnée
 
         echo "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$actor['id_personne']."'>".$actor['prenom']." ".$actor['nom']."</a></li>";
-
     }
 
     echo "</ul>";  

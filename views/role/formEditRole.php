@@ -10,7 +10,6 @@ while ($role = $currentRole->fetch()){ // récupération des informations du Gen
 }
 
 ?>
-
     <div class="form-group my-1">
         <label for="title" class="mb-3">Edition du rôle</label>
         <textarea class="form-control" aria-label="With textarea" name="nom_role" required><?= $nom_role ?></textarea>                    

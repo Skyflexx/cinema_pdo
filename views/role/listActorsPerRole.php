@@ -12,7 +12,6 @@
         $showResult .= "<li class ='list-group-item'><a class='text-decoration-none' href='index.php?action=actorfilmographie&id=".$idPerson."'>$nomActor - ($titre_film - $annee_sortie)</a></li>";
         $id_role = $actor['id_role']; // on récupère l'id role pour les boutons delete et modifier.
     }
-
   
 ?>
 

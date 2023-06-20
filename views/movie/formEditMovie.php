@@ -27,9 +27,7 @@
 
         $id_genre[] =  $currGenre['id_genre']; // Pourra être utilisé par la suite en cas de pré selection de genre (pas encore actif)
         $nom_genre[] = $currGenre['nom_genre']; 
-
     }
-
   
     // Les lignes de codes ci-dessous permettent de rajouter le mot "checked" à la balise radio pour pré-cocher la bonne en fct du contenu de la BDD*
     // On pourra par la suite factoriser ce code via du ternaire plutôt
@@ -87,7 +85,6 @@
 
     <p>Choix du genre</p>
     <!-- selection du ou des genres -->
-
         <?php     
         
         // var_dump($id_genre); id_genre est un array qui est alimenté par les genres présents dans la BDD.
