@@ -66,6 +66,7 @@
         // UPDATE
 
         public function formEditGenre($id){
+
             $dao = new DAO();
 
             $sql = "SELECT g.id_genre, g.nom_genre
@@ -94,9 +95,7 @@
         }
         
         // DELETE
-
-        // PROBLEME : Si on delete un genre, il n'y a plus rien dans la table appartenir et donc ça créé des erreurs SQL à l'édition d'un film.
-
+        
         public function deleteGenre($id){
             
             $dao = new DAO();

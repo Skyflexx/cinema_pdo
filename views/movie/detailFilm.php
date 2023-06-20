@@ -29,8 +29,6 @@
                 // var_dump(exif_imagetype($detail['affiche'])); 
     }
 
-    
-
     echo "<div class ='mx-5 row'>";
 
     while ($acteur = $acteursFilm->fetch()){ // Affichera la liste des acteurs pour ce film
