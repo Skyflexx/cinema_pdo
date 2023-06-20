@@ -41,8 +41,8 @@
     $checkRating5 = "";
 
     switch ($rating) {
-        case 1: $checkRating1 = "checked"; break; // Via le fetch, $rating = $detail['note']; je récupère la note. Par exemple 1. Dans le cas où la note est 1 on remplit la variable $checkrating1 avec checked.
-        case 2: $checkRating2 = "checked"; break;
+        case 1 : $checkRating1 = "checked"; break; // Via le fetch, $rating = $detail['note']; je récupère la note. Par exemple 1. Dans le cas où la note est 1 on remplit la variable $checkrating1 avec checked.
+        case 2 : $checkRating2 = "checked"; break;
         case 3 : $checkRating3 = "checked"; break;
         case 4 : $checkRating4 = "checked"; break;
         case 5 : $checkRating5 = "checked"; break;
@@ -88,33 +88,18 @@
     <p>Choix du genre</p>
     <!-- selection du ou des genres -->
 
-        <?php
-        // foreach ($nom_genre as $index => $genre){                
+        <?php     
+        
+        // var_dump($id_genre); id_genre est un array qui est alimenté par les genres présents dans la BDD.
+
+        // Lors du fetch de tous les genres existants, on va au cas par cas voir si dans l'array Genres il y a $id_genre (qui est le genre actuel). Si c'est le cas on rajoute le mot checked directement dans la balise.
+                      
+        while ($genre = $genres->fetch()){ // permet de lister tous les genres existants
+
+            echo "<input class ='form-check-input mx-3' name = 'id_genre[]' type ='checkbox' " . (in_array($genre['id_genre'], $id_genre) ? "checked " : "") .
+            "value =".$genre['id_genre'].">".$genre['nom_genre']."";               
             
-        //     // Foreach qui va parcourir la liste fetch des genres déjà sélectionnés dans le film 
-        //     // (et vu que le fetch id_genre et nom_genre sont liés et donc égaux en terme d'écriture,
-        //     // je peux parcourir l'array des id_genre[] avec l'index de l'array nom_genre[] )
-
-        //     echo "<option selected value =".$id_genre[$index].">".$genre."</option>"; // Ainsi, les genres déjà sélectionnés seront pré remplis
-            
-        // }          
-            
-            while ($genre = $genres->fetch()){ // permet de lister tous les genres existants
-
-                // echo "<option value =".$genre['id_genre'].">".$genre['nom_genre']."</option>"; // La value permet de récupérer l'ID du genre.
-
-                // <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-
-                // operateur ternaire : A etudier !
-                echo "<input class ='form-check-input mx-3' name = 'id_genre[]' type ='checkbox' " . (
-                    in_array($genre['id_genre'], $id_genre) // 20 correspond au genre "non défini" Coché par défaut.
-                    ? "checked "
-                    : ""
-                ) . "value =".$genre['id_genre'].">".$genre['nom_genre']."";
-
-                // echo "<input class ='form-check-input' type ='checkbox' value =".$genre['id_genre'].">".$genre['nom_genre']."</input>";
-            }
-                    
+            }       
         ?>           
     
     <!-- https://fr.web.img6.acsta.net/c_310_420/commons/v9/common/empty/empty_portrait.png -->

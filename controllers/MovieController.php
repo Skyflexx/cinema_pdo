@@ -213,10 +213,20 @@
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
             $releaseDate= filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);  
-            $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
-            $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
+            $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);          
             $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT); // récup de l'id real pour la jonction
             $img_url = filter_input(INPUT_POST, "imgUrl", FILTER_VALIDATE_URL);
+
+               // EN CAS DE SUPPRESSION DE GENRE ET QU'UN FILM N'A PLUS DE GENRE
+            if (isset($array['id_genre'])){ // si ce paramètre existe, càd qu'il y a des genres de cochés.
+
+                $id_genres = filter_var_array($array['id_genre'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // FILTER VAR ARRAY POUR LA SELECTION MULTIPLE DES GENRES id_genre deviendra un array
+
+            } else {
+
+                $id_genres[] = 1; // Sinon par défaut ce sera le genre 1. 
+
+            }
 
             if (file_exists($_FILES['imgToUpload']['tmp_name'])){ // Cette condition vérifie l'existence d'un fichier dans le cache de $_FILES 
 
